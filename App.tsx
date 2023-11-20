@@ -20,7 +20,7 @@ const App: React.FC<any> = () => {
     cafStage: IdentityCAFStage.DEV,
     setEmailUrl: null,
     setPhoneUrl: null,
-    faceAuthToken: mobileToken,
+    livenessToken: mobileToken,
     setEnableScreenshots: false,
     setLoadingScreen: false,
     filter: IdentityFilter.LINE_DRAWING

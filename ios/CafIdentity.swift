@@ -65,6 +65,14 @@ class CAFIdentity: RCTEventEmitter {
         if let cafStageValue = configDictionary?["cafStage"] as? Int, let newCafStage = CAFStage(rawValue: cafStageValue) {
           cafStage = newCafStage
         }
+        
+      let response : NSMutableDictionary = [:]
+          response["livenessToken"] = livenessToken
+          response["mobileToken"] = token
+          response["cafStage"] = cafStage
+          response["config"] = config
+      
+      self.sendEvent(withName: "Identity_Success", body: response)
       
         
       let identity = IdentitySDK.Builder(mobileToken: token, livenessToken: livenessToken!)

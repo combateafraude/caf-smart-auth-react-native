@@ -20,9 +20,9 @@ export type IdentityHookReturnType = [
 ];
 
 export enum IdentityCAFStage {
-    DEV,
     BETA,
-    PROD
+    PROD,
+    DEV,
 }
 
 export enum IdentityFilter {
@@ -37,7 +37,7 @@ export interface IIdentityResponse {
 }
 
 export interface IIdentityConfig {
-    faceAuthToken: string | null;
+    livenessToken: string | null;
     setEnableScreenshots: boolean;
     setLoadingScreen: boolean;
     cafStage: CAFStage;

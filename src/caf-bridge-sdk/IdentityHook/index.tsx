@@ -11,7 +11,7 @@ const defaultConfig: T.IIdentityConfig = {
   cafStage: T.IdentityCAFStage.PROD,
   setEmailUrl: null,
   setPhoneUrl: null,
-  faceAuthToken: null,
+  livenessToken: null,
   setEnableScreenshots: false,
   setLoadingScreen: false,
   filter: T.IdentityFilter.LINE_DRAWING
@@ -22,8 +22,8 @@ function formatedConfig(config?: T.IIdentityConfig): string {
 
   return JSON.stringify({
     ...responseConfig,
-    cafStage: T.IdentityCAFStage[responseConfig.cafStage],
-    filter: T.IdentityFilter[responseConfig.filter],
+    cafStage: isAndroid ? T.IdentityCAFStage[responseConfig.cafStage] : responseConfig.cafStage,
+    filter: isAndroid ? T.IdentityFilter[responseConfig.filter] : responseConfig.filter,
   })
 }
 
