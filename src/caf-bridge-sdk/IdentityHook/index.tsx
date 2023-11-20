@@ -4,7 +4,7 @@ import * as T from './types.d';
 import { Platform } from "react-native";
 
 const isAndroid = Platform.OS === "android";
-export const CAF_IDENTITY_MODULE = isAndroid ? NativeModules.CafModule : NativeModules.CafIdentity;
+export const CAF_IDENTITY_MODULE =  NativeModules.CafIdentity;
 export const CAF_IDENTITY_MODULE_EMITTER = new NativeEventEmitter(CAF_IDENTITY_MODULE);
 
 const defaultConfig: T.IIdentityConfig = {

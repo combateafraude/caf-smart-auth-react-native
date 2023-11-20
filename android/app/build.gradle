@@ -118,6 +118,8 @@ dependencies {
     } else {
         implementation jscFlavor
     }
+
+    implementation("com.combateafraude.sdk:identity:0.7.0-beta-01")
 }
 
 apply from: file("../../node_modules/@react-native-community/cli-platform-android/native_modules.gradle"); applyNativeModulesAppBuildGradle(project)

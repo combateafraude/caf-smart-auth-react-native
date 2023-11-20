@@ -19,3 +19,15 @@ buildscript {
         classpath("com.facebook.react:react-native-gradle-plugin")
     }
 }
+
+allprojects {
+    repositories {
+        google()
+        mavenCentral()
+        //Your maven should be like this
+        maven { url 'https://maven.fpregistry.io/releases' }
+        maven { url 'https://raw.githubusercontent.com/iProov/android/master/maven/' }
+        maven { url 'https://repo.combateafraude.com/android/release' }
+    }
+}
+
