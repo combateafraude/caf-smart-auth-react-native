@@ -33,13 +33,13 @@ function IdentityHook(token: string, policyId: string, config?: T.IIdentityConfi
   const [data, setData] = useState<T.IIdentityResponse | undefined>();
 
   const handleEvent = (event: string, res?: T.IdentitySDKResponseType) => {
-    console.log(event, res);
     switch (event) {
       case "Identity_Success":
         setData({
           authorized: res?.authorized,
           attestation: res?.attestation
         });
+        setLoading(false);
         break;
       case "Identity_Pending":
         setData({
@@ -49,6 +49,7 @@ function IdentityHook(token: string, policyId: string, config?: T.IIdentityConfi
         break;
       case "Identity_Error":
         setError({...res} as T.IdentityErrorType);
+        setLoading(false);
         break;
       default:
         break;
@@ -71,6 +72,7 @@ function IdentityHook(token: string, policyId: string, config?: T.IIdentityConfi
   }, [token]);
 
   const send = (personId: string): void => {
+    setLoading(true);
     setData(undefined);
     setError(undefined);
     CAF_IDENTITY_MODULE.identity(token, personId, policyId, formatedConfig(config));

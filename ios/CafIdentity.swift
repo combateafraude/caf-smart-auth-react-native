@@ -66,14 +66,6 @@ class CAFIdentity: RCTEventEmitter {
           cafStage = newCafStage
         }
         
-      let response : NSMutableDictionary = [:]
-          response["livenessToken"] = livenessToken
-          response["mobileToken"] = token
-          response["cafStage"] = cafStage
-          response["config"] = config
-      
-      self.sendEvent(withName: "Identity_Success", body: response)
-      
         
       let identity = IdentitySDK.Builder(mobileToken: token, livenessToken: livenessToken!)
           .setStage(cafStage)
@@ -81,61 +73,37 @@ class CAFIdentity: RCTEventEmitter {
           .setPhoneURL(phoneURL)
           .build()
         
-      identity.verifyPolicy(personID: personId, policyId: policyId) { verifyPolicyResult in
-        switch verifyPolicyResult {
-          
-        case .onSuccess((let isAuthorized, let attestation)):
-          let response : NSMutableDictionary = [:]
-          response["authorized"] = isAuthorized
-          response["attestation"] = attestation
-          self.sendEvent(withName: "Identity_Success", body: response)
-          break
-        case .onPending((let isAuthorized, let attestation)):
-          let response : NSMutableDictionary = [:]
-          response["pending"] = isAuthorized
-          response["attestation"] = attestation
-          self.sendEvent(withName: "Identity_Pending", body: response)
-          break
-        case .onError(let error):
-          let response : NSMutableDictionary = [:]
-          response["message"] = error.localizedDescription
-          response["type"] = "Error"
-          self.sendEvent(withName: "Identity_Error", body: response)
-          break
-        case .onCanceled(_):
-          let response : NSMutableDictionary = [:]
-          response["message"] = "Cancelado pelo usuário"
-          self.sendEvent(withName: "Identity_Canceled", body: response)
-          break
+      DispatchQueue.main.async {
+        identity.verifyPolicy(personID: personId, policyId: policyId) { verifyPolicyResult in
+          switch verifyPolicyResult {
+            
+          case .onSuccess((let isAuthorized, let attestation)):
+            let response : NSMutableDictionary = [:]
+            response["authorized"] = isAuthorized
+            response["attestation"] = attestation
+            self.sendEvent(withName: "Identity_Success", body: response)
+            break
+          case .onPending((let isAuthorized, let attestation)):
+            let response : NSMutableDictionary = [:]
+            response["pending"] = isAuthorized
+            response["attestation"] = attestation
+            self.sendEvent(withName: "Identity_Pending", body: response)
+            break
+          case .onError(let error):
+            let response : NSMutableDictionary = [:]
+            response["message"] = error.errorDescription
+            response["type"] = "Error"
+            self.sendEvent(withName: "Identity_Error", body: response)
+            break
+          case .onCanceled(_):
+            let response : NSMutableDictionary = [:]
+            response["message"] = "Cancelado pelo usuário"
+            self.sendEvent(withName: "Identity_Canceled", body: response)
+            break
+          }
         }
       }
-      
-//        identity.verifyPolicy(personID: personId, policyId: policyId) { verifyPolicyResult in
-//          switch verifyPolicyResult {
-//                    case .onSuccess((let isAutorized, let attestation)):
-//                        let response : NSMutableDictionary = [:]
-//                        response["authorized"] = isAutorized
-//                        response["attestation"] = attestation
-//                        self.sendEvent(withName: "Identity_Success", body: response)
-//                        break
-//                    case .onPending((let isPending, let attestation)):
-//                        let response : NSMutableDictionary = [:]
-//                        response["pending"] = isPending
-//
-//                        self.sendEvent(withName: "Identity_Pending", body: response)
-//                        break
-//                    case .onError(let error):
-//                        let response : NSMutableDictionary = [:]
-//                        response["message"] = error.localizedDescription
-//                        self.sendEvent(withName: "Identity_Error", body: response)
-//                        break
-//                    case .onCanceled():
-//                      let response : NSMutableDictionary = [:]
-//                      response["message"] = "Cancelado pelo usuário"
-//                      self.sendEvent(withName: "Identity_Error", body: response)
-//                      break
-//                    }
-//            }
+
     }
 }
 
