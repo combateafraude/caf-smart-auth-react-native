@@ -26,6 +26,7 @@ public class CafIdentity extends ReactContextBaseJavaModule {
     @ReactMethod
     public void identity(String token, String personId, String policyId, String config) {
         intent.putExtra("token", token);
+        intent.putExtra("personId", personId);
         intent.putExtra("policyId", policyId);
         intent.putExtra("config", config);
         getReactApplicationContext().startActivity(intent);
