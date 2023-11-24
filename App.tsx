@@ -14,7 +14,7 @@ const App: React.FC<any> = () => {
   const mobileToken = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiI2NDQ4NjU3ZWNlOGJhNTAwMDg3NjVlMmEifQ.4BErr8PnpkYJaZ-ZvFyyUdJ4KpsRcvWF42J0L2eLLlA";
   const identityToken = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiI2NDg3NzlhNDljNmVhMjAwMDg1NDgwMjcifQ.nXARKBXt47mFSqqmPWWoLqKdbBwWXYiRO4D8Exy1uHU"
   //Insert user's CPF to run FaceAuthenticator SDK
-  const CPF = "64312743509"
+  const CPF = "03331719005"
 
   const IdentityConfig: IIdentityConfig = {
     cafStage: IdentityCAFStage.DEV,
@@ -22,12 +22,12 @@ const App: React.FC<any> = () => {
     setPhoneUrl: null,
     livenessToken: mobileToken,
     setEnableScreenshots: false,
-    setLoadingScreen: false,
-    filter: IdentityFilter.LINE_DRAWING
+    setLoadingScreen: true,
+    filter: IdentityFilter.NATURAL
   }
 
   // Identity
-  const [sendIdentity, identityData, loadingIdentity, identityError] = IdentityHook(identityToken, "tudo", IdentityConfig);
+  const [sendIdentity, identityData, loadingIdentity, identityError] = IdentityHook(identityToken, "face", IdentityConfig);
 
   return (
     <SafeAreaView style={backgroundStyle}>

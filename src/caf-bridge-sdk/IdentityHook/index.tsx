@@ -31,19 +31,22 @@ function IdentityHook(token: string, policyId: string, config?: T.IIdentityConfi
   const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<T.IdentityErrorType | undefined>();
   const [data, setData] = useState<T.IIdentityResponse | undefined>();
+  const [canceled, setCanceled] = useState<String | undefined>();
 
   const handleEvent = (event: string, res?: T.IdentitySDKResponseType) => {
     switch (event) {
       case "Identity_Success":
         setData({
           authorized: res?.authorized,
+          attemptId: res?.attemptId,
           attestation: res?.attestation
         });
         setLoading(false);
         break;
       case "Identity_Pending":
         setData({
-          pending: res?.pending
+          pending: res?.pending,
+          attestation: res?.attestation
         })
         setLoading(false);
         break;
@@ -51,6 +54,9 @@ function IdentityHook(token: string, policyId: string, config?: T.IIdentityConfi
         setError({...res} as T.IdentityErrorType);
         setLoading(false);
         break;
+      case "Identity_Canceled":
+        setCanceled(res?.message);
+        setLoading(false);
       default:
         break;
     }
@@ -63,11 +69,13 @@ function IdentityHook(token: string, policyId: string, config?: T.IIdentityConfi
     CAF_IDENTITY_MODULE_EMITTER.addListener("Identity_Success", (data) => eventListener("Identity_Success", data));
     CAF_IDENTITY_MODULE_EMITTER.addListener("Identity_Pending", (data) => eventListener("Identity_Pending", data));
     CAF_IDENTITY_MODULE_EMITTER.addListener("Identity_Error", (data) => eventListener("Identity_Error", data));
+    CAF_IDENTITY_MODULE_EMITTER.addListener("Identity_Canceled", (data) => eventListener("Identity_Canceled", data));
 
     return () => {
       CAF_IDENTITY_MODULE_EMITTER.removeAllListeners("Identity_Success");
       CAF_IDENTITY_MODULE_EMITTER.removeAllListeners("Identity_Pending");
       CAF_IDENTITY_MODULE_EMITTER.removeAllListeners("Identity_Error");
+      CAF_IDENTITY_MODULE_EMITTER.removeAllListeners("Identity_Canceled");
     };
   }, [token]);
 
@@ -75,10 +83,11 @@ function IdentityHook(token: string, policyId: string, config?: T.IIdentityConfi
     setLoading(true);
     setData(undefined);
     setError(undefined);
+    setCanceled(undefined);
     CAF_IDENTITY_MODULE.identity(token, personId, policyId, formatedConfig(config));
   };
 
-  return [send, data, loading, error];
+  return [send, data, loading, error, canceled];
 }
 
 export default IdentityHook;
