@@ -101,6 +101,15 @@ android {
             proguardFiles getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro"
         }
     }
+
+    buildFeatures {
+        dataBinding = true
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
 }
 
 dependencies {
@@ -119,7 +128,7 @@ dependencies {
         implementation jscFlavor
     }
 
-    implementation("com.combateafraude.sdk:identity:0.7.0-beta-01")
+    implementation("com.combateafraude.sdk:identity:0.7.1-beta-01")
 }
 
 apply from: file("../../node_modules/@react-native-community/cli-platform-android/native_modules.gradle"); applyNativeModulesAppBuildGradle(project)
