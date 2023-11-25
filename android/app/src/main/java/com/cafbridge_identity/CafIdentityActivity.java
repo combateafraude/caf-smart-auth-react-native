@@ -64,14 +64,6 @@ public class CafIdentityActivity extends ReactActivity {
 
             Identity identity;
 
-            Log.d("config", config.livenessToken);
-            Log.d("config", config.cafStage.name());
-            Log.d("config", config.filter.name());
-            Log.d("config", config.setEnableScreenshots ? "TRUE" : "FALSE" );
-            Log.d("config", config.setLoadingScreen ? "TRUE" : "FALSE");
-            Log.d("config", customConfig);
-            Log.d("config", policyId);
-
             if (config.livenessToken == null) {
                 identity = new Identity.Builder(token, this)
                         .setStage(config.cafStage)
@@ -87,13 +79,9 @@ public class CafIdentityActivity extends ReactActivity {
                         .build();
             }
 
-            Log.d("config", identity.getFaceAuthenticatorSettings().getFaceAuthToken());
-            Log.d("config", identity.getFaceAuthenticatorSettings().getUseLoadingScreen() ? "LOADING" : "NOT LOADING");
-
             identity.verifyPolicy(personId, policyId, new VerifyPolicyListener() {
                 @Override
                 public void onSuccess(boolean isAuthorized, @Nullable String attestation, String s1) {
-                    Log.d("IDENTITY", "success");
                     WritableMap writableMap = new WritableNativeMap();
                     writableMap.putBoolean("authorized", isAuthorized);
                     writableMap.putString("attestation", attestation);
@@ -105,7 +93,6 @@ public class CafIdentityActivity extends ReactActivity {
 
                 @Override
                 public void onPending(boolean isPending, String s) {
-                    Log.d("IDENTITY", "pending");
                     WritableMap writableMap = new WritableNativeMap();
                     writableMap.putBoolean("pending", isPending);
                     getReactInstanceManager().getCurrentReactContext()
@@ -116,7 +103,6 @@ public class CafIdentityActivity extends ReactActivity {
 
                 @Override
                 public void onError(Failure failure) {
-                    Log.d("IDENTITY", "identity error");
                     WritableMap writableMap = new WritableNativeMap();
                     String message = "Error: " + failure.getMessage();
                     String type = "Error";
@@ -136,12 +122,15 @@ public class CafIdentityActivity extends ReactActivity {
                         // you are using a policy that we do not yet support
                         message =  "PolicyReason: " + failure.getMessage();
                         type = "Policy Reason";
+                    } else if(failure.getMessage() == "Cancelled") {
+                        message = "Cancelado pelo usuário";
+                        type = "Canceled";
                     }
                     writableMap.putString("error", message);
                     writableMap.putString("type", type);
                     getReactInstanceManager().getCurrentReactContext()
                             .getJSModule(DeviceEventManagerModule.RCTDeviceEventEmitter.class)
-                            .emit("Identity_Error", writableMap);
+                            .emit(type == "Canceled" ? "Identity_Canceled" : "Identity_Error", writableMap);
                     finish();
                 }
             });

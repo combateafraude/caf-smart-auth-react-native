@@ -98,6 +98,7 @@ class CAFIdentity: RCTEventEmitter {
           case .onCanceled(_):
             let response : NSMutableDictionary = [:]
             response["message"] = "Cancelado pelo usuário"
+            response["type"] = "Canceled"
             self.sendEvent(withName: "Identity_Canceled", body: response)
             break
           }

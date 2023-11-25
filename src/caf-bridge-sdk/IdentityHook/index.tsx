@@ -4,7 +4,7 @@ import * as T from './types.d';
 import { Platform } from "react-native";
 
 const isAndroid = Platform.OS === "android";
-export const CAF_IDENTITY_MODULE =  NativeModules.CafIdentity;
+export const CAF_IDENTITY_MODULE = NativeModules.CafIdentity;
 export const CAF_IDENTITY_MODULE_EMITTER = new NativeEventEmitter(CAF_IDENTITY_MODULE);
 
 const defaultConfig: T.IIdentityConfig = {
@@ -39,7 +39,7 @@ function IdentityHook(token: string, policyId: string, config?: T.IIdentityConfi
           authorized: res?.authorized,
           attestation: res?.attestation
         });
-        setLoading(false);
+
         break;
       case "Identity_Pending":
         setData({
@@ -48,7 +48,11 @@ function IdentityHook(token: string, policyId: string, config?: T.IIdentityConfi
         setLoading(false);
         break;
       case "Identity_Error":
-        setError({...res} as T.IdentityErrorType);
+        setError({ ...res } as T.IdentityErrorType);
+        setLoading(false);
+        break;
+      case "Identity_Canceled":
+        setError({ ...res } as T.IdentityErrorType);
         setLoading(false);
         break;
       default:
@@ -63,11 +67,13 @@ function IdentityHook(token: string, policyId: string, config?: T.IIdentityConfi
     CAF_IDENTITY_MODULE_EMITTER.addListener("Identity_Success", (data) => eventListener("Identity_Success", data));
     CAF_IDENTITY_MODULE_EMITTER.addListener("Identity_Pending", (data) => eventListener("Identity_Pending", data));
     CAF_IDENTITY_MODULE_EMITTER.addListener("Identity_Error", (data) => eventListener("Identity_Error", data));
+    CAF_IDENTITY_MODULE_EMITTER.addListener("Identity_Canceled", (data) => eventListener("Identity_Canceled", data));
 
     return () => {
       CAF_IDENTITY_MODULE_EMITTER.removeAllListeners("Identity_Success");
       CAF_IDENTITY_MODULE_EMITTER.removeAllListeners("Identity_Pending");
       CAF_IDENTITY_MODULE_EMITTER.removeAllListeners("Identity_Error");
+      CAF_IDENTITY_MODULE_EMITTER.removeAllListeners("Identity_Canceled");
     };
   }, [token]);
 

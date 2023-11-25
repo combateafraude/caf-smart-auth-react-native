@@ -10,7 +10,8 @@ export type IdentitySDKResponseType = Partial <IdentityErrorType> & IIdentityRes
 export type IdentityEvent =
     | "Identity_Success"
     | "Identity_Pending"
-    | "Identity_Error";
+    | "Identity_Error"
+    | "Identity_Canceled";
 
 export type IdentityHookReturnType = [
     (token: string) => void,
