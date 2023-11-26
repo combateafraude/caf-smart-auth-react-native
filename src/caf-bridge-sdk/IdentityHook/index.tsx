@@ -31,19 +31,22 @@ function IdentityHook(token: string, policyId: string, config?: T.IIdentityConfi
   const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<T.IdentityErrorType | undefined>();
   const [data, setData] = useState<T.IIdentityResponse | undefined>();
+  const [canceled, setCanceled] = useState<boolean>(false);
 
   const handleEvent = (event: string, res?: T.IdentitySDKResponseType) => {
     switch (event) {
       case "Identity_Success":
         setData({
           authorized: res?.authorized,
+          attemptId: res?.attemptId,
           attestation: res?.attestation
         });
-
+        setLoading(false);
         break;
       case "Identity_Pending":
         setData({
-          pending: res?.pending
+          pending: res?.pending,
+          attestation: res?.attestation
         })
         setLoading(false);
         break;
@@ -52,7 +55,7 @@ function IdentityHook(token: string, policyId: string, config?: T.IIdentityConfi
         setLoading(false);
         break;
       case "Identity_Canceled":
-        setError({ ...res } as T.IdentityErrorType);
+        setCanceled(true);
         setLoading(false);
         break;
       default:
@@ -81,10 +84,11 @@ function IdentityHook(token: string, policyId: string, config?: T.IIdentityConfi
     setLoading(true);
     setData(undefined);
     setError(undefined);
+    setCanceled(false);
     CAF_IDENTITY_MODULE.identity(token, personId, policyId, formatedConfig(config));
   };
 
-  return [send, data, loading, error];
+  return [send, data, loading, error, canceled];
 }
 
 export default IdentityHook;

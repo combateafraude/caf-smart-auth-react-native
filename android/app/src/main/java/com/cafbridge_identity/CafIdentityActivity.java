@@ -81,9 +81,10 @@ public class CafIdentityActivity extends ReactActivity {
 
             identity.verifyPolicy(personId, policyId, new VerifyPolicyListener() {
                 @Override
-                public void onSuccess(boolean isAuthorized, @Nullable String attestation, String s1) {
+                public void onSuccess(boolean isAuthorized, @Nullable String attemptId, @Nullable String attestation) {
                     WritableMap writableMap = new WritableNativeMap();
                     writableMap.putBoolean("authorized", isAuthorized);
+                    writableMap.putString("attemptId", attemptId);
                     writableMap.putString("attestation", attestation);
                     getReactInstanceManager().getCurrentReactContext()
                             .getJSModule(DeviceEventManagerModule.RCTDeviceEventEmitter.class)
@@ -92,9 +93,10 @@ public class CafIdentityActivity extends ReactActivity {
                 }
 
                 @Override
-                public void onPending(boolean isPending, String s) {
+                public void onPending(boolean isPending, String attestation) {
                     WritableMap writableMap = new WritableNativeMap();
                     writableMap.putBoolean("pending", isPending);
+                    writableMap.putString("attestation", attestation);
                     getReactInstanceManager().getCurrentReactContext()
                             .getJSModule(DeviceEventManagerModule.RCTDeviceEventEmitter.class)
                             .emit("Identity_Pending", writableMap);

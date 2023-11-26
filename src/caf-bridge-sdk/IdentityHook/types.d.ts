@@ -17,7 +17,8 @@ export type IdentityHookReturnType = [
     (token: string) => void,
     IdentityResponseType | undefined,
     boolean,
-    IdentityErrorType | undefined
+    IdentityErrorType | undefined,
+    boolean
 ];
 
 export enum IdentityCAFStage {
@@ -35,6 +36,7 @@ export interface IIdentityResponse {
     authorized?: boolean;
     pending?: boolean;
     attestation?: string;
+    attemptId?: string;
 }
 
 export interface IIdentityConfig {
