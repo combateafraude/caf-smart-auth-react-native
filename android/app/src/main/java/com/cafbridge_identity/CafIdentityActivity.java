@@ -124,15 +124,15 @@ public class CafIdentityActivity extends ReactActivity {
                         // you are using a policy that we do not yet support
                         message =  "PolicyReason: " + failure.getMessage();
                         type = "Policy Reason";
-                    } else if(failure.getMessage() == "Canceled") {
-                        message = "User Canceled";
-                        type = "Canceled";
+                    } else if(failure.getMessage() == "Cancelled") {
+                        message = "User Cancelled";
+                        type = "Cancelled";
                     }
                     writableMap.putString("error", message);
                     writableMap.putString("type", type);
                     getReactInstanceManager().getCurrentReactContext()
                             .getJSModule(DeviceEventManagerModule.RCTDeviceEventEmitter.class)
-                            .emit(type == "Canceled" ? "Identity_Canceled" : "Identity_Error", writableMap);
+                            .emit(type == "Cancelled" ? "Identity_Canceled" : "Identity_Error", writableMap);
                     finish();
                 }
             });
