@@ -125,7 +125,7 @@ public class CafIdentityActivity extends ReactActivity {
                         message =  "PolicyReason: " + failure.getMessage();
                         type = "Policy Reason";
                     } else if(failure.getMessage() == "Cancelled") {
-                        message = "Cancelado pelo usuário";
+                        message = "User Canceled";
                         type = "Canceled";
                     }
                     writableMap.putString("error", message);
