@@ -51,6 +51,10 @@ const App: React.FC<any> = () => {
               color: Colors.black
             },]}>
               {loadingIdentity ? 'Loading ...' : ''}</Text>
+            <Text style={[styles.sectionTitle, {
+              color: Colors.black
+            },]}>
+              {userCanceled ? 'User canceled the action' : ''}</Text>
             <View style={styles.sectionResultContainer}>
               {!!identityError && <Text style={[styles.sectionResultText, {
                 color: Colors.black
@@ -64,7 +68,7 @@ const App: React.FC<any> = () => {
             <Text style={[styles.sectionTitle, {
               color: Colors.black
             },]}></Text>
-          </View> 
+          </View>
         </View>
       </ScrollView>
     </SafeAreaView>

@@ -44,11 +44,14 @@ public class CafIdentityActivity extends ReactActivity {
         policyId = intent.getStringExtra("policyId");
         customConfig = intent.getStringExtra("config");
 
-        if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, REQUEST_FINE_LOCATION_PERMISSION);
+        if (ContextCompat.checkSelfPermission(this,
+                Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(this, new String[] { Manifest.permission.ACCESS_FINE_LOCATION },
+                    REQUEST_FINE_LOCATION_PERMISSION);
         }
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
-            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.CAMERA}, REQUEST_CAMERA_PERMISSION);
+            ActivityCompat.requestPermissions(this, new String[] { Manifest.permission.CAMERA },
+                    REQUEST_CAMERA_PERMISSION);
         }
 
         try {
@@ -64,14 +67,6 @@ public class CafIdentityActivity extends ReactActivity {
 
             Identity identity;
 
-            Log.d("config", config.livenessToken);
-            Log.d("config", config.cafStage.name());
-            Log.d("config", config.filter.name());
-            Log.d("config", config.setEnableScreenshots ? "TRUE" : "FALSE" );
-            Log.d("config", config.setLoadingScreen ? "TRUE" : "FALSE");
-            Log.d("config", customConfig);
-            Log.d("config", policyId);
-
             if (config.livenessToken == null) {
                 identity = new Identity.Builder(token, this)
                         .setStage(config.cafStage)
@@ -83,19 +78,17 @@ public class CafIdentityActivity extends ReactActivity {
                         .setStage(config.cafStage)
                         .setPhoneUrl(config.setPhoneUrl)
                         .setEmailUrl(config.setEmailUrl)
-                        .setFaceAuthenticatorSettings(new FaceAuthenticatorSettings(config.livenessToken, config.setLoadingScreen, config.setEnableScreenshots, config.filter))
+                        .setFaceAuthenticatorSettings(new FaceAuthenticatorSettings(config.livenessToken,
+                                config.setLoadingScreen, config.setEnableScreenshots, config.filter))
                         .build();
             }
 
-            Log.d("config", identity.getFaceAuthenticatorSettings().getFaceAuthToken());
-            Log.d("config", identity.getFaceAuthenticatorSettings().getUseLoadingScreen() ? "LOADING" : "NOT LOADING");
-
             identity.verifyPolicy(personId, policyId, new VerifyPolicyListener() {
                 @Override
-                public void onSuccess(boolean isAuthorized, @Nullable String attestation, String s1) {
-                    Log.d("IDENTITY", "success");
+                public void onSuccess(boolean isAuthorized, @Nullable String attemptId, @Nullable String attestation) {
                     WritableMap writableMap = new WritableNativeMap();
                     writableMap.putBoolean("authorized", isAuthorized);
+                    writableMap.putString("attemptId", attemptId);
                     writableMap.putString("attestation", attestation);
                     getReactInstanceManager().getCurrentReactContext()
                             .getJSModule(DeviceEventManagerModule.RCTDeviceEventEmitter.class)
@@ -104,10 +97,10 @@ public class CafIdentityActivity extends ReactActivity {
                 }
 
                 @Override
-                public void onPending(boolean isPending, String s) {
-                    Log.d("IDENTITY", "pending");
+                public void onPending(boolean isPending, String attestation) {
                     WritableMap writableMap = new WritableNativeMap();
                     writableMap.putBoolean("pending", isPending);
+                    writableMap.putString("attestation", attestation);
                     getReactInstanceManager().getCurrentReactContext()
                             .getJSModule(DeviceEventManagerModule.RCTDeviceEventEmitter.class)
                             .emit("Identity_Pending", writableMap);
@@ -116,32 +109,36 @@ public class CafIdentityActivity extends ReactActivity {
 
                 @Override
                 public void onError(Failure failure) {
-                    Log.d("IDENTITY", "identity error");
                     WritableMap writableMap = new WritableNativeMap();
                     String message = "Error: " + failure.getMessage();
                     String type = "Error";
-                    if (failure instanceof com.combateafraude.identity.output.NetworkReason){
+                    if (failure instanceof com.combateafraude.identity.output.NetworkReason) {
                         // internet connection failure
-                        message = "NetworkError: " + ((com.combateafraude.identity.output.NetworkReason) failure).getThrowable();
+                        message = "NetworkError: "
+                                + ((com.combateafraude.identity.output.NetworkReason) failure).getThrowable();
                         type = "Network Error";
-                    } else if (failure instanceof com.combateafraude.identity.output.ServerReason){
+                    } else if (failure instanceof com.combateafraude.identity.output.ServerReason) {
                         // there was a problem in any communication with the CAF servers, let us know!
-                        message = "Server Error Code: " + ((com.combateafraude.identity.output.ServerReason) failure).getCode();
+                        message = "Server Error Code: "
+                                + ((com.combateafraude.identity.output.ServerReason) failure).getCode();
                         type = "ServerError";
                     } else if (failure instanceof SecurityReason) {
                         // some security reason on the user's device prevents the use of the SDK
-                        message =  "SecurityReason: " + failure.getMessage();
+                        message = "SecurityReason: " + failure.getMessage();
                         type = "SecurityReason";
-                    } else if(failure instanceof PolicyReason){
+                    } else if (failure instanceof PolicyReason) {
                         // you are using a policy that we do not yet support
-                        message =  "PolicyReason: " + failure.getMessage();
+                        message = "PolicyReason: " + failure.getMessage();
                         type = "Policy Reason";
+                    } else if (failure.getMessage() == "Cancelled") {
+                        message = "User Canceled the action";
+                        type = "Canceled";
                     }
                     writableMap.putString("error", message);
                     writableMap.putString("type", type);
                     getReactInstanceManager().getCurrentReactContext()
                             .getJSModule(DeviceEventManagerModule.RCTDeviceEventEmitter.class)
-                            .emit("Identity_Error", writableMap);
+                            .emit(type == "Canceled" ? "Identity_Canceled" : "Identity_Error", writableMap);
                     finish();
                 }
             });

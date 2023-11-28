@@ -10,13 +10,15 @@ export type IdentitySDKResponseType = Partial <IdentityErrorType> & IIdentityRes
 export type IdentityEvent =
     | "Identity_Success"
     | "Identity_Pending"
-    | "Identity_Error";
+    | "Identity_Error"
+    | "Identity_Canceled";
 
 export type IdentityHookReturnType = [
     (token: string) => void,
     IdentityResponseType | undefined,
     boolean,
-    IdentityErrorType | undefined
+    IdentityErrorType | undefined,
+    boolean
 ];
 
 export enum IdentityCAFStage {
@@ -34,6 +36,7 @@ export interface IIdentityResponse {
     authorized?: boolean;
     pending?: boolean;
     attestation?: string;
+    attemptId?: string;
 }
 
 export interface IIdentityConfig {
