@@ -11,10 +11,10 @@ const App: React.FC<any> = () => {
   };
 
   //Insert your generated JWT here. Check documentation here: https://docs.caf.io/sdks/access-token
-  const mobileToken = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiI2NDQ4NjU3ZWNlOGJhNTAwMDg3NjVlMmEifQ.4BErr8PnpkYJaZ-ZvFyyUdJ4KpsRcvWF42J0L2eLLlA";
-  const identityToken = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiI2NDg3NzlhNDljNmVhMjAwMDg1NDgwMjcifQ.nXARKBXt47mFSqqmPWWoLqKdbBwWXYiRO4D8Exy1uHU"
-  //Insert user's CPF to run FaceAuthenticator SDK
-  const CPF = "64312743509"
+  const mobileToken = "";
+  const identityToken = ""
+  
+  const CPF = ""
 
   const IdentityConfig: IIdentityConfig = {
     cafStage: IdentityCAFStage.DEV,
@@ -27,7 +27,7 @@ const App: React.FC<any> = () => {
   }
 
   // Identity
-  const [sendIdentity, identityData, loadingIdentity, identityError] = IdentityHook(identityToken, "tudo", IdentityConfig);
+  const [sendIdentity, identityData, loadingIdentity, identityError] = IdentityHook(identityToken, "policy", IdentityConfig);
 
   return (
     <SafeAreaView style={backgroundStyle}>
