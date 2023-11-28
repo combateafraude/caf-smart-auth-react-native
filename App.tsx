@@ -27,7 +27,7 @@ const App: React.FC<any> = () => {
   }
 
   // Identity
-  const [sendIdentity, identityData, loadingIdentity, identityError] = IdentityHook(identityToken, "tudo", IdentityConfig);
+  const [sendIdentity, identityData, loadingIdentity, identityError] = IdentityHook(identityToken, "policy", IdentityConfig);
 
   return (
     <SafeAreaView style={backgroundStyle}>
