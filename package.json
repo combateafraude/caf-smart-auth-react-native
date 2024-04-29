@@ -5,7 +5,7 @@
   "scripts": {
     "android": "react-native run-android",
     "ios": "react-native run-ios",
-    "lint:ios": "swiftlint 2>&1 | tee swiftlint_output.txt",
+    "lint:ios": "swiftlint",
     "lint:js": "eslint \"**/*.{js,ts,tsx}\"",
     "start": "react-native start",
     "test": "jest"
