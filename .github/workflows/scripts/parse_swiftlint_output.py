@@ -10,7 +10,7 @@ def parse_swiftlint_output():
         exit(1)
 
     # Find the summary message at the end of the output
-    match = re.search(r"Done linting! Found (\d+) violations, (\d+) serious in (\d+) files", output)
+    match = re.search(r"Done linting! Found (\d+) violations, (\d+) serious in (\d+) files?", output)
 
     if match is None:
         print("Summary message not found in the SwiftLint output.")
