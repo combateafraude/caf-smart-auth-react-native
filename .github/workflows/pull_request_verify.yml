@@ -1,0 +1,74 @@
+name: Pull Request Verify
+
+permissions:
+  pull-requests: write
+  contents: read
+
+on:
+  pull_request:
+    branches:
+      - '*'
+
+jobs:
+  lint:
+    name: Pull Request Verify
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup
+        uses: ./.github/actions/setup
+
+      - name: Lint iOS Files
+        run: swiftlint 2>&1 | tee swiftlint_output.txt
+
+      - name: Parse Lint iOS Errors
+        run: python3 ./.github/workflows/scripts/parse_swiftlint_output.py
+
+      - name: Lint JS Files
+        run: npx eslint "**/*.{js,ts,tsx}" -f json -o eslint_output.json || true
+
+      - name: Parse Lint JS Errors
+        run: python3 ./.github/workflows/scripts/parse_eslint_output.py
+
+      - name: Comment on PR if there are lint errors
+        uses: actions/github-script@v7
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            const fs = require('fs');
+            const swiftlintSummaryFilePath = 'swiftlint_summary.txt';
+            const eslintSummaryFilePath = 'eslint_summary.txt';
+      
+            if (fs.existsSync(swiftlintSummaryFilePath) && fs.existsSync(eslintSummaryFilePath)) {
+              const iosMessage = fs.readFileSync(swiftlintSummaryFilePath, 'utf8');
+              const jsMessage = fs.readFileSync(eslintSummaryFilePath, 'utf8');
+
+              github.rest.issues.createComment({
+                issue_number: context.payload.pull_request.number,
+                owner: context.payload.repository.owner.login,
+                repo: context.payload.repository.name,
+                body: `Results from SwiftLint:\n${iosMessage}\n\nResults from Eslint:\n${jsMessage}`
+              })
+            } else {
+              console.error('File not found:', swiftlintSummaryFilePath);
+              console.error('File not found:', eslintSummaryFilePath);
+            }
+    
+      - name: Check outputs
+        run: |
+          # Check for the specific error message in the output file
+          if grep -q "🛑 SwiftLint Failed!" swiftlint_summary.txt; then
+            echo "SwiftLint failed with errors."
+            exit 1
+          else
+            echo "SwiftLint passed."
+          fi  
+
+          if grep -q "🛑 Eslint Failed!" eslint_summary.txt; then
+            echo "Eslint failed with errors."
+            exit 1
+          else
+            echo "Eslint passed."
+          fi  

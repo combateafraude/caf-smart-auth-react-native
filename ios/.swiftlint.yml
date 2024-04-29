@@ -1,0 +1,42 @@
+disabled_rules: # rule identifiers to exclude from running
+  - colon
+  - comma
+  - control_statement
+  - identifier_name
+  - cyclomatic_complexity
+  - function_body_length
+  - shorthand_operator
+  - function_parameter_count
+opt_in_rules: # some rules are only opt-in
+  # Find all the available rules by running:
+  # swiftlint rules
+included: # paths to include during linting. `--path` is ignored if present.
+  - DocumentDetector
+excluded: # paths to ignore during linting. Takes precedence over `included`.
+  - Carthage
+  - Pods
+  - Source/ExcludedFolder
+  - Source/ExcludedFile.swift
+  - Source/*/ExcludedFile.swift # Exclude files with a wildcard
+analyzer_rules: # Rules run by `swiftlint analyze` (experimental)
+  - explicit_self
+# configurable rules can be customized from this configuration file
+# binary rules can set their severity level
+force_cast:  # implicitly
+  severity: error
+force_try:
+  severity: warning # explicitly
+# rules that have both warning and error levels, can set just the warning level
+# implicitly
+line_length: 180
+# they can set both implicitly with an array
+type_body_length:
+  - 300 # warning
+  - 800 # error
+# or they can set both explicitly
+file_length:
+  warning: 500
+  error: 1300
+# naming rules can set warnings/errors for min_length and max_length
+# additionally they can set excluded names
+reporter: "xcode" # reporter type (xcode, json, csv, checkstyle, junit, html, emoji, sonarqube, markdown)
