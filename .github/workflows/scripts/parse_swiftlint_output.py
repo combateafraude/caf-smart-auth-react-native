@@ -5,12 +5,16 @@ def parse_swiftlint_output():
         # Read the output from SwiftLint
         with open("swiftlint_output.txt", "r") as f:
             output = f.read()
-    except:
+    except FileNotFoundError:
         print("The file 'swiftlint_output.txt' could not be found.")
         exit(1)
 
     # Find the summary message at the end of the output
     match = re.search(r"Done linting! Found (\d+) violations, (\d+) serious in (\d+) files", output)
+
+    if match is None:
+        print("Summary message not found in the SwiftLint output.")
+        exit(1)
 
     # Extract values from the summary message
     violations = int(match.group(1))
