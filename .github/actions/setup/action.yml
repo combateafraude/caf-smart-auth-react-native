@@ -23,10 +23,10 @@ runs:
     - name: Setup Swiftlint
       run: |
         curl -sL https://github.com/realm/SwiftLint/releases/tag/0.54.0/download/swiftlint_linux.zip -o swiftlint.zip
-        unzip -o swiftlint.zip -d .
+        unzip -o swiftlint.zip.ZIP -d .
         chmod +x swiftlint
         sudo mv swiftlint /usr/local/bin/swiftlint
-        rm swiftlint.zip
+        rm swiftlint.zip.ZIP
       shell: bash
 
     - name: Cache dependencies
