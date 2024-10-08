@@ -53,3 +53,4 @@ jobs:
           args: >
             -X
             -Dsonar.projectKey=${{ github.event.repository.name }}
+            -Dsonar.java.binaries=**/*.class
