@@ -20,6 +20,5 @@ jobs:
           SONAR_HOST_URL: ${{ secrets.SONAR_URL }}
         with:
           args: >
-            -X
             -Dsonar.projectKey=${{ github.event.repository.name }}
             -Dsonar.exclusions=**/*.java
