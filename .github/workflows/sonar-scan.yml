@@ -19,12 +19,6 @@ jobs:
         with:
           node-version-file: .nvmrc
     
-      # - name: Setup Java
-      #   uses: actions/setup-java@v4
-      #   with:
-      #     distribution: 'zulu'
-      #     java-version: '17'
-    
       - name: Cache dependencies
         id: yarn-cache
         uses: actions/cache@v4
@@ -53,4 +47,4 @@ jobs:
           args: >
             -X
             -Dsonar.projectKey=${{ github.event.repository.name }}
-            -Dsonar.java.binaries=**/*.class
+            -Dsonar.java.exclusions=**/*.java
