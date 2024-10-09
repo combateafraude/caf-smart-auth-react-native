@@ -1,0 +1,61 @@
+name: Sonar
+
+on:
+  pull_request:
+    branches:
+      - main
+      - integration/feat/*
+
+jobs:
+  build:
+    name: Sonar
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0  # Shallow clones should be disabled for a better relevancy of analysis
+
+      - name: Setup Node.js	
+        uses: actions/setup-node@v4	
+        with:	
+          node-version-file: .nvmrc	
+
+      - name: Cache dependencies	
+        id: yarn-cache	
+        uses: actions/cache@v4	
+        with:	
+          path: |	
+            **/node_modules	
+            .yarn/install-state.gz	
+          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}-${{ hashFiles('**/package.json') }}	
+          restore-keys: |	
+            ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}	
+            ${{ runner.os }}-yarn-	
+
+      - name: Install dependencies	
+        if: steps.yarn-cache.outputs.cache-hit != 'true'	
+        run: yarn install --immutable	
+        shell: bash	
+
+      - name: Gradle cache
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/.gradle/caches
+            ~/.gradle/wrapper
+          key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*', '**/gradle-wrapper.properties') }}
+          restore-keys: |
+            ${{ runner.os }}-gradle-
+
+      - name: Assemble Android Project	
+        run: cd android && ./gradlew clean assembleDebug
+
+      - uses: sonarsource/sonarqube-scan-action@master
+        env:
+          SONAR_TOKEN: ${{ secrets.SONARQUBE_ADMIN }}
+          SONAR_HOST_URL: ${{ secrets.SONAR_URL }}
+        with:
+          args: >
+            -Dsonar.projectKey=${{ github.event.repository.name }}
+            -Dsonar.java.binaries=android/app/build/intermediates/javac/debug/classes
+            -Dsonar.exclusions=node_modules/**/*.java
