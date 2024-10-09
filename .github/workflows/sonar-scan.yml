@@ -47,4 +47,5 @@ jobs:
         with:
           args: >
             -Dsonar.projectKey=${{ github.event.repository.name }}
+            -Dsonar.java.binaries=android/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes
             -Dsonar.exclusions=node_modules/**/*.java
