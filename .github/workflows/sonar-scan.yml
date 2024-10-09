@@ -41,7 +41,7 @@ jobs:
         run: cd android && ./gradlew clean assembleDebug
 
       - name: Test Directories
-        run: ls -la android/app
+        run: ls -la android/app/build/intermediates/javac/debug
 
       # - uses: sonarsource/sonarqube-scan-action@master
       #   env:
