@@ -50,15 +50,12 @@ jobs:
       - name: Assemble Android Project	
         run: cd android && ./gradlew clean assembleDebug
 
-      - name: Test Directories
-        run: ls -la android/app/build/intermediates/javac/debug/classes
-
-      # - uses: sonarsource/sonarqube-scan-action@master
-      #   env:
-      #     SONAR_TOKEN: ${{ secrets.SONARQUBE_ADMIN }}
-      #     SONAR_HOST_URL: ${{ secrets.SONAR_URL }}
-      #   with:
-      #     args: >
-      #       -Dsonar.projectKey=${{ github.event.repository.name }}
-      #       -Dsonar.java.binaries=android/app/build/intermediates/javac/debug/classes
-      #       -Dsonar.exclusions=node_modules/**/*.java
+      - uses: sonarsource/sonarqube-scan-action@master
+        env:
+          SONAR_TOKEN: ${{ secrets.SONARQUBE_ADMIN }}
+          SONAR_HOST_URL: ${{ secrets.SONAR_URL }}
+        with:
+          args: >
+            -Dsonar.projectKey=${{ github.event.repository.name }}
+            -Dsonar.java.binaries=android/app/build/intermediates/javac/debug/classes
+            -Dsonar.exclusions=node_modules/**/*.java
