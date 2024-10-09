@@ -37,11 +37,21 @@ jobs:
         run: yarn install --immutable	
         shell: bash	
 
+      - name: Gradle cache
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/.gradle/caches
+            ~/.gradle/wrapper
+          key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*', '**/gradle-wrapper.properties') }}
+          restore-keys: |
+            ${{ runner.os }}-gradle-
+
       - name: Assemble Android Project	
         run: cd android && ./gradlew clean assembleDebug
 
       - name: Test Directories
-        run: ls -la android/app/build/intermediates/javac/debug
+        run: ls -la android/app/build/intermediates/javac/debug/classes
 
       # - uses: sonarsource/sonarqube-scan-action@master
       #   env:
@@ -50,5 +60,5 @@ jobs:
       #   with:
       #     args: >
       #       -Dsonar.projectKey=${{ github.event.repository.name }}
-      #       -Dsonar.java.binaries=android/app/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes
+      #       -Dsonar.java.binaries=android/app/build/intermediates/javac/debug/classes
       #       -Dsonar.exclusions=node_modules/**/*.java
