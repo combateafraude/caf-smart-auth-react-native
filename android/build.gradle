@@ -15,10 +15,6 @@ buildscript {
     repositories {
         google()
         mavenCentral()
-        maven { url = uri("https://repo.combateafraude.com/android/release") }
-        maven { url = uri("https://raw.githubusercontent.com/iProov/android/patch192/maven/") }
-        maven { setUrl("https://maven.fpregistry.io/releases") }
-        maven { setUrl("https://jitpack.io") }
     }
     dependencies {
         classpath("com.android.tools.build:gradle")
