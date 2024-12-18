@@ -134,8 +134,8 @@ class CafSmartAuthBridgeModule(private val reactContext: ReactApplicationContext
                 promise.resolve(true)
             } catch (e: Exception) {
                 promise.reject(
-                    "PERMISSION_ERROR",
-                    "Error checking location permissions: ${e.message}"
+                    PERMISSION_ERROR,
+                    "$PERMISSION_ERROR_DESCRIPTION ${e.message}"
                 )
             }
         }
@@ -158,5 +158,8 @@ class CafSmartAuthBridgeModule(private val reactContext: ReactApplicationContext
         private const val CAF_WRITABLE_MAP_ATTESTATION = "attestation"
 
         private const val CAF_WRITABLE_MAP_ERROR_MESSAGE = "message"
+
+        private const val PERMISSION_ERROR = "PERMISSION_ERROR"
+        private const val PERMISSION_ERROR_DESCRIPTION = "Error checking location permissions:"
     }
 }
