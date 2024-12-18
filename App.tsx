@@ -1,153 +1,65 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { SafeAreaView, StyleSheet, Button, Text, Platform } from 'react-native';
+
+import { CafFilter, CafStage } from './src/hooks/types';
+
 import {
-  Button,
-  SafeAreaView,
-  ScrollView,
-  StatusBar,
-  StyleSheet,
-  Text,
-  View,
-} from 'react-native';
-import { Colors } from 'react-native/Libraries/NewAppScreen';
-import {
-  IIdentityConfig,
-  IdentityCAFStage,
-  IdentityFilter,
-} from './src/caf-bridge-sdk/IdentityHook/types.d';
-import IdentityHook from './src/caf-bridge-sdk/IdentityHook';
+  startSmartAuth,
+  requestLocationPermissions,
+  useSmartAuth,
+} from './src/hooks/useSmartAuth';
+
+const IS_ANDROID = Platform.OS === 'android';
 
 const App: React.FC<React.FC> = () => {
-  const backgroundStyle = {
-    backgroundColor: Colors.lighter,
-  };
+  const { success, cancelled, error, isLoading, pending } = useSmartAuth({
+    faceAuthenticationSettings: {
+      loadingScreen: false,
+      enableScreenCapture: false,
+      filter: CafFilter.NATURAL,
+    },
+    stage: CafStage.PROD,
+  });
 
-  // Insert your generated JWT here. Check documentation here: https://docs.caf.io/sdks/access-token
-  const mobileToken = '';
-  const identityToken = '';
+  const mfaToken =
+    'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiI2NmY1YzU0NjhlMWI3YTAwMDg2OGRhZGEifQ.5pm1Pq3fipLfuWOzxMYCAHirML8nzWWkf4O10u1ov68';
+  const faceAuthenticationToken =
+    'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiI2NzA0MWIxODczMzFkZTAwMDgyNjZkMDMifQ.a6BRVT35JLPRtlkGXM9jVsX817PuVKQ2UsMqEXz0GJM';
 
-  const CPF = '';
-
-  const IdentityConfig: IIdentityConfig = {
-    cafStage: IdentityCAFStage.DEV,
-    setEmailUrl: null,
-    setPhoneUrl: null,
-    livenessToken: mobileToken,
-    setEnableScreenshots: false,
-    setLoadingScreen: false,
-    filter: IdentityFilter.LINE_DRAWING,
-  };
-
-  // Identity
-  const [sendIdentity, identityData, loadingIdentity, identityError] =
-    IdentityHook(identityToken, 'policy', IdentityConfig);
+  useEffect(() => {
+    IS_ANDROID && requestLocationPermissions();
+  }, []);
 
   return (
-    <SafeAreaView style={backgroundStyle}>
-      <StatusBar
-        barStyle="dark-content"
-        backgroundColor={backgroundStyle.backgroundColor}
+    <SafeAreaView style={styles.container}>
+      <Button
+        title="Start Smart Auth"
+        onPress={() =>
+          startSmartAuth(
+            mfaToken,
+            faceAuthenticationToken,
+            'todas',
+            '43485449806',
+          )
+        }
       />
-      <ScrollView
-        contentInsetAdjustmentBehavior="automatic"
-        style={backgroundStyle}
-      >
-        <View
-          style={{
-            backgroundColor: Colors.white,
-          }}
-        >
-          <View style={styles.sectionContainer}>
-            <Button
-              title="Execute Identity"
-              onPress={() => sendIdentity(CPF)}
-            />
-            <Text
-              style={[
-                styles.sectionTitle,
-                {
-                  color: Colors.black,
-                },
-              ]}
-            >
-              {loadingIdentity ? 'Loading ...' : ''}
-            </Text>
-            <Text
-              style={[
-                styles.sectionTitle,
-                {
-                  color: Colors.black,
-                },
-              ]}
-            >
-              {/* {userCanceled ? 'User canceled the action' : ''} */}
-            </Text>
-            <View style={styles.sectionResultContainer}>
-              {!!identityError && (
-                <Text
-                  style={[
-                    styles.sectionResultText,
-                    {
-                      color: Colors.black,
-                    },
-                  ]}
-                >
-                  {`${identityError.type}: \n ${identityError.message}`}
-                </Text>
-              )}
-              {identityData && (
-                <Text
-                  style={[
-                    styles.sectionResultText,
-                    {
-                      color: Colors.black,
-                    },
-                  ]}
-                >
-                  {'IdentityResult:\n' + JSON.stringify(identityData)}
-                </Text>
-              )}
-            </View>
-            <Text
-              style={[
-                styles.sectionTitle,
-                {
-                  color: Colors.black,
-                },
-              ]}
-            ></Text>
-          </View>
-        </View>
-      </ScrollView>
+
+      <Text>Success {JSON.stringify(success)}</Text>
+      <Text>Cancelled {JSON.stringify(cancelled)}</Text>
+      <Text>Error {JSON.stringify(error)}</Text>
+      <Text>Is Loading {JSON.stringify(isLoading)}</Text>
+      <Text>Pending {JSON.stringify(pending)}</Text>
     </SafeAreaView>
   );
 };
 
 const styles = StyleSheet.create({
-  sectionContainer: {
-    flex: 1,
-    marginHorizontal: 40,
-    marginTop: 20,
-    paddingHorizontal: 24,
-    backgroundColor: '#42d602',
-    borderRadius: 8,
-  },
-  sectionResultContainer: {
+  container: {
     flex: 1,
     alignItems: 'center',
-    marginTop: 32,
-    paddingHorizontal: 24,
-  },
-  sectionTitle: {
-    marginTop: 20,
-    fontSize: 18,
-    fontWeight: '500',
-    textAlign: 'center',
-  },
-  sectionResultText: {
-    fontSize: 16,
-    fontWeight: '400',
-    lineHeight: 25,
-    textAlign: 'auto',
+    justifyContent: 'center',
+    paddingHorizontal: 20,
+    gap: 8,
   },
 });
 
