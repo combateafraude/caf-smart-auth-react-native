@@ -2,7 +2,7 @@ import Foundation
 import React
 import CafSmartAuth
 
-private struct CafSmartAuthEvents {
+private struct CafSmartAuthBridgeEvents {
   static let cafSmartAuthSuccessEvent: String = "CafSmartAuth_Success"
   static let cafSmartAuthPendingEvent: String = "CafSmartAuth_Pending"
   static let cafSmartAuthErrorEvent: String = "CafSmartAuth_Error"
@@ -16,7 +16,7 @@ internal struct CafFaceAuthenticationSettingsModel: Decodable {
   let filter: Int?
 }
 
-internal struct CafSmartAuthSettingsModel: Decodable {
+internal struct CafSmartAuthBridgeSettingsModel: Decodable {
   let stage: Int?
   let faceAuthenticationSettings: CafFaceAuthenticationSettingsModel?
 }
@@ -27,8 +27,8 @@ private struct CafMutableDictionaries {
   static let message: String = "message"
 }
 
-@objc(CafSmartAuthModule)
-class CafSmartAuthModule: RCTEventEmitter {
+@objc(CafSmartAuthBridgeModule)
+class CafSmartAuthBridgeModule: RCTEventEmitter {
   private var smartAuth: CafSmartAuthSdk?
   
   @objc
@@ -38,19 +38,19 @@ class CafSmartAuthModule: RCTEventEmitter {
   
   override func supportedEvents() -> [String]! {
     return [
-      CafSmartAuthEvents.cafSmartAuthSuccessEvent,
-      CafSmartAuthEvents.cafSmartAuthPendingEvent,
-      CafSmartAuthEvents.cafSmartAuthErrorEvent,
-      CafSmartAuthEvents.cafSmartAuthCancelEvent,
-      CafSmartAuthEvents.cafSmartAuthLoadingEvent,
-      CafSmartAuthEvents.cafSmartAuthLoadedEvent
+      CafSmartAuthBridgeEvents.cafSmartAuthSuccessEvent,
+      CafSmartAuthBridgeEvents.cafSmartAuthPendingEvent,
+      CafSmartAuthBridgeEvents.cafSmartAuthErrorEvent,
+      CafSmartAuthBridgeEvents.cafSmartAuthCancelEvent,
+      CafSmartAuthBridgeEvents.cafSmartAuthLoadingEvent,
+      CafSmartAuthBridgeEvents.cafSmartAuthLoadedEvent
     ]
   }
   
   private func build(
     mfaToken: String,
     faceAuthToken: String,
-    settings: CafSmartAuthSettingsModel
+    settings: CafSmartAuthBridgeSettingsModel
   ) -> CafSmartAuthSdk {
     let builder = CafSmartAuthSdk.CafBuilder(mobileToken: mfaToken)
     
@@ -85,7 +85,7 @@ class CafSmartAuthModule: RCTEventEmitter {
       switch result {
       case .onSuccess(let response):
         self.emitEvent(
-          name: CafSmartAuthEvents.cafSmartAuthSuccessEvent,
+          name: CafSmartAuthBridgeEvents.cafSmartAuthSuccessEvent,
           data: [
             CafMutableDictionaries.isAuthorized: response.isAuthorized,
             CafMutableDictionaries.attestation: response.attestation
@@ -95,7 +95,7 @@ class CafSmartAuthModule: RCTEventEmitter {
         
       case .onPending(let response):
         self.emitEvent(
-          name: CafSmartAuthEvents.cafSmartAuthPendingEvent,
+          name: CafSmartAuthBridgeEvents.cafSmartAuthPendingEvent,
           data: [
             CafMutableDictionaries.isAuthorized: response.isAuthorized,
             CafMutableDictionaries.attestation: response.attestation
@@ -104,23 +104,23 @@ class CafSmartAuthModule: RCTEventEmitter {
         
       case .onError(let error):
         self.emitEvent(
-          name: CafSmartAuthEvents.cafSmartAuthErrorEvent,
+          name: CafSmartAuthBridgeEvents.cafSmartAuthErrorEvent,
           data: [CafMutableDictionaries.message: error.localizedDescription]
         )
         self.smartAuth = nil
         
       case .onCanceled(_):
         self.emitEvent(
-          name: CafSmartAuthEvents.cafSmartAuthCancelEvent,
+          name: CafSmartAuthBridgeEvents.cafSmartAuthCancelEvent,
           data: true
         )
         self.smartAuth = nil
         
       case .onLoading:
-        self.emitEvent(name: CafSmartAuthEvents.cafSmartAuthLoadingEvent, data: true)
+        self.emitEvent(name: CafSmartAuthBridgeEvents.cafSmartAuthLoadingEvent, data: true)
         
       case .onLoaded:
-        self.emitEvent(name: CafSmartAuthEvents.cafSmartAuthLoadedEvent, data: true)
+        self.emitEvent(name: CafSmartAuthBridgeEvents.cafSmartAuthLoadedEvent, data: true)
       }
     }
   }
@@ -130,7 +130,7 @@ class CafSmartAuthModule: RCTEventEmitter {
   func startSmartAuth(mfaToken: String, faceAuthToken: String, personId: String, policyId: String, settings: String) {
     DispatchQueue.main.async {
       self.smartAuth = self.build(
-        mfaToken: mfaToken, faceAuthToken: faceAuthToken, settings: CafSmartAuthSettings().parseJson(settings: settings)!
+        mfaToken: mfaToken, faceAuthToken: faceAuthToken, settings: CafSmartAuthBridgeSettings().parseJson(settings: settings)!
       )
       
       self.smartAuth?.verifyPolicy(personID: personId, policyId: policyId, listener: self.setupListener())

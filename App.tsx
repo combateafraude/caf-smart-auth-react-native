@@ -21,10 +21,9 @@ const App: React.FC<React.FC> = () => {
     stage: CafStage.PROD,
   });
 
-  const mfaToken =
-    'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiI2NmY1YzU0NjhlMWI3YTAwMDg2OGRhZGEifQ.5pm1Pq3fipLfuWOzxMYCAHirML8nzWWkf4O10u1ov68';
-  const faceAuthenticationToken =
-    'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiI2NzA0MWIxODczMzFkZTAwMDgyNjZkMDMifQ.a6BRVT35JLPRtlkGXM9jVsX817PuVKQ2UsMqEXz0GJM';
+  function jsonStringify<T>(obj: T): string {
+    return JSON.stringify(obj);
+  }
 
   useEffect(() => {
     IS_ANDROID && requestLocationPermissions();
@@ -33,22 +32,22 @@ const App: React.FC<React.FC> = () => {
   return (
     <SafeAreaView style={styles.container}>
       <Button
-        title="Start Smart Auth"
+        title="Start CafSmartAuth"
         onPress={() =>
           startSmartAuth(
-            mfaToken,
-            faceAuthenticationToken,
+            'mfaToken',
+            'faceAuthenticationToken',
             'todas',
             '43485449806',
           )
         }
       />
 
-      <Text>Success {JSON.stringify(success)}</Text>
-      <Text>Cancelled {JSON.stringify(cancelled)}</Text>
-      <Text>Error {JSON.stringify(error)}</Text>
-      <Text>Is Loading {JSON.stringify(isLoading)}</Text>
-      <Text>Pending {JSON.stringify(pending)}</Text>
+      <Text>Success {jsonStringify(success)}</Text>
+      <Text>Cancelled {jsonStringify(cancelled)}</Text>
+      <Text>Error {jsonStringify(error)}</Text>
+      <Text>Is Loading {jsonStringify(isLoading)}</Text>
+      <Text>Pending {jsonStringify(pending)}</Text>
     </SafeAreaView>
   );
 };

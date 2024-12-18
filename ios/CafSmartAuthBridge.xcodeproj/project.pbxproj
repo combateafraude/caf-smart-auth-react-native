@@ -7,15 +7,15 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		00E356F31AD99517003FC87E /* CafSmartAuthTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* CafSmartAuthTests.m */; };
-		0C80B921A6F3F58F76C31292 /* libPods-CafSmartAuth.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5DCACB8F33CDC322A6C60F78 /* libPods-CafSmartAuth.a */; };
-		10D04C032D12474E006EB88D /* CafSmartAuthModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10D04C022D12474E006EB88D /* CafSmartAuthModule.swift */; };
-		10D04C092D12497F006EB88D /* CafSmartAuthSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10D04C082D12497F006EB88D /* CafSmartAuthSettings.swift */; };
-		10D04C0D2D12FF07006EB88D /* CafSmartAuth.mm in Sources */ = {isa = PBXBuildFile; fileRef = 10D04C0C2D12FF07006EB88D /* CafSmartAuth.mm */; };
+		00E356F31AD99517003FC87E /* CafSmartAuthBridgeTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* CafSmartAuthBridgeTests.m */; };
+		0C80B921A6F3F58F76C31292 /* libPods-CafSmartAuthBridge.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5DCACB8F33CDC322A6C60F78 /* libPods-CafSmartAuthBridge.a */; };
+		10336D6B2D13114D00F00668 /* CafSmartAuthBridgeModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10336D6A2D13114D00F00668 /* CafSmartAuthBridgeModule.swift */; };
+		10336D6D2D13115700F00668 /* CafSmartAuthBridgeSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10336D6C2D13115700F00668 /* CafSmartAuthBridgeSettings.swift */; };
+		10D04C0D2D12FF07006EB88D /* CafSmartAuthBridge.mm in Sources */ = {isa = PBXBuildFile; fileRef = 10D04C0C2D12FF07006EB88D /* CafSmartAuthBridge.mm */; };
 		13B07FBC1A68108700A75B9A /* AppDelegate.mm in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.mm */; };
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
-		7699B88040F8A987B510C191 /* libPods-CafSmartAuth-CafSmartAuthTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 19F6CBCC0A4E27FBF8BF4A61 /* libPods-CafSmartAuth-CafSmartAuthTests.a */; };
+		7699B88040F8A987B510C191 /* libPods-CafSmartAuthBridge-CafSmartAuthBridgeTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 19F6CBCC0A4E27FBF8BF4A61 /* libPods-CafSmartAuthBridge-CafSmartAuthBridgeTests.a */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
 /* End PBXBuildFile section */
 
@@ -25,32 +25,32 @@
 			containerPortal = 83CBB9F71A601CBA00E9B192 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = 13B07F861A680F5B00A75B9A;
-			remoteInfo = CafSmartAuth;
+			remoteInfo = CafSmartAuthBridge;
 		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		00E356EE1AD99517003FC87E /* CafSmartAuthTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CafSmartAuthTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		00E356EE1AD99517003FC87E /* CafSmartAuthBridgeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CafSmartAuthBridgeTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		00E356F11AD99517003FC87E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		00E356F21AD99517003FC87E /* CafSmartAuthTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CafSmartAuthTests.m; sourceTree = "<group>"; };
-		10D04C022D12474E006EB88D /* CafSmartAuthModule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CafSmartAuthModule.swift; sourceTree = "<group>"; };
-		10D04C042D124842006EB88D /* CafSmartAuth.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CafSmartAuth.h; sourceTree = "<group>"; };
-		10D04C082D12497F006EB88D /* CafSmartAuthSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CafSmartAuthSettings.swift; sourceTree = "<group>"; };
-		10D04C0B2D124B41006EB88D /* CafSmartAuth-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "CafSmartAuth-Bridging-Header.h"; sourceTree = "<group>"; };
-		10D04C0C2D12FF07006EB88D /* CafSmartAuth.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = CafSmartAuth.mm; sourceTree = "<group>"; };
-		13B07F961A680F5B00A75B9A /* CafSmartAuth.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CafSmartAuth.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		13B07FAF1A68108700A75B9A /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = CafSmartAuth/AppDelegate.h; sourceTree = "<group>"; };
-		13B07FB01A68108700A75B9A /* AppDelegate.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = AppDelegate.mm; path = CafSmartAuth/AppDelegate.mm; sourceTree = "<group>"; };
-		13B07FB51A68108700A75B9A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = CafSmartAuth/Images.xcassets; sourceTree = "<group>"; };
-		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = CafSmartAuth/Info.plist; sourceTree = "<group>"; };
-		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = CafSmartAuth/main.m; sourceTree = "<group>"; };
-		19F6CBCC0A4E27FBF8BF4A61 /* libPods-CafSmartAuth-CafSmartAuthTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-CafSmartAuth-CafSmartAuthTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		3B4392A12AC88292D35C810B /* Pods-CafSmartAuth.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CafSmartAuth.debug.xcconfig"; path = "Target Support Files/Pods-CafSmartAuth/Pods-CafSmartAuth.debug.xcconfig"; sourceTree = "<group>"; };
-		5709B34CF0A7D63546082F79 /* Pods-CafSmartAuth.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CafSmartAuth.release.xcconfig"; path = "Target Support Files/Pods-CafSmartAuth/Pods-CafSmartAuth.release.xcconfig"; sourceTree = "<group>"; };
-		5B7EB9410499542E8C5724F5 /* Pods-CafSmartAuth-CafSmartAuthTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CafSmartAuth-CafSmartAuthTests.debug.xcconfig"; path = "Target Support Files/Pods-CafSmartAuth-CafSmartAuthTests/Pods-CafSmartAuth-CafSmartAuthTests.debug.xcconfig"; sourceTree = "<group>"; };
-		5DCACB8F33CDC322A6C60F78 /* libPods-CafSmartAuth.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-CafSmartAuth.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = CafSmartAuth/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		89C6BE57DB24E9ADA2F236DE /* Pods-CafSmartAuth-CafSmartAuthTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CafSmartAuth-CafSmartAuthTests.release.xcconfig"; path = "Target Support Files/Pods-CafSmartAuth-CafSmartAuthTests/Pods-CafSmartAuth-CafSmartAuthTests.release.xcconfig"; sourceTree = "<group>"; };
+		00E356F21AD99517003FC87E /* CafSmartAuthBridgeTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CafSmartAuthBridgeTests.m; sourceTree = "<group>"; };
+		10336D6A2D13114D00F00668 /* CafSmartAuthBridgeModule.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CafSmartAuthBridgeModule.swift; sourceTree = "<group>"; };
+		10336D6C2D13115700F00668 /* CafSmartAuthBridgeSettings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CafSmartAuthBridgeSettings.swift; sourceTree = "<group>"; };
+		10D04C042D124842006EB88D /* CafSmartAuthBridge.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CafSmartAuthBridge.h; sourceTree = "<group>"; };
+		10D04C0B2D124B41006EB88D /* CafSmartAuthBridge-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "CafSmartAuthBridge-Bridging-Header.h"; sourceTree = "<group>"; };
+		10D04C0C2D12FF07006EB88D /* CafSmartAuthBridge.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = CafSmartAuthBridge.mm; sourceTree = "<group>"; };
+		13B07F961A680F5B00A75B9A /* CafSmartAuthBridge.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CafSmartAuthBridge.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		13B07FAF1A68108700A75B9A /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = CafSmartAuthBridge/AppDelegate.h; sourceTree = "<group>"; };
+		13B07FB01A68108700A75B9A /* AppDelegate.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = AppDelegate.mm; path = CafSmartAuthBridge/AppDelegate.mm; sourceTree = "<group>"; };
+		13B07FB51A68108700A75B9A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = CafSmartAuthBridge/Images.xcassets; sourceTree = "<group>"; };
+		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = CafSmartAuthBridge/Info.plist; sourceTree = "<group>"; };
+		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = CafSmartAuthBridge/main.m; sourceTree = "<group>"; };
+		19F6CBCC0A4E27FBF8BF4A61 /* libPods-CafSmartAuthBridge-CafSmartAuthBridgeTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-CafSmartAuthBridge-CafSmartAuthBridgeTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		3B4392A12AC88292D35C810B /* Pods-CafSmartAuthBridge.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CafSmartAuthBridge.debug.xcconfig"; path = "Target Support Files/Pods-CafSmartAuthBridge/Pods-CafSmartAuthBridge.debug.xcconfig"; sourceTree = "<group>"; };
+		5709B34CF0A7D63546082F79 /* Pods-CafSmartAuthBridge.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CafSmartAuthBridge.release.xcconfig"; path = "Target Support Files/Pods-CafSmartAuthBridge/Pods-CafSmartAuthBridge.release.xcconfig"; sourceTree = "<group>"; };
+		5B7EB9410499542E8C5724F5 /* Pods-CafSmartAuthBridge-CafSmartAuthBridgeTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CafSmartAuthBridge-CafSmartAuthBridgeTests.debug.xcconfig"; path = "Target Support Files/Pods-CafSmartAuthBridge-CafSmartAuthBridgeTests/Pods-CafSmartAuthBridge-CafSmartAuthBridgeTests.debug.xcconfig"; sourceTree = "<group>"; };
+		5DCACB8F33CDC322A6C60F78 /* libPods-CafSmartAuthBridge.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-CafSmartAuthBridge.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = CafSmartAuthBridge/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		89C6BE57DB24E9ADA2F236DE /* Pods-CafSmartAuthBridge-CafSmartAuthBridgeTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CafSmartAuthBridge-CafSmartAuthBridgeTests.release.xcconfig"; path = "Target Support Files/Pods-CafSmartAuthBridge-CafSmartAuthBridgeTests/Pods-CafSmartAuthBridge-CafSmartAuthBridgeTests.release.xcconfig"; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
@@ -59,7 +59,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7699B88040F8A987B510C191 /* libPods-CafSmartAuth-CafSmartAuthTests.a in Frameworks */,
+				7699B88040F8A987B510C191 /* libPods-CafSmartAuthBridge-CafSmartAuthBridgeTests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -67,20 +67,20 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0C80B921A6F3F58F76C31292 /* libPods-CafSmartAuth.a in Frameworks */,
+				0C80B921A6F3F58F76C31292 /* libPods-CafSmartAuthBridge.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		00E356EF1AD99517003FC87E /* CafSmartAuthTests */ = {
+		00E356EF1AD99517003FC87E /* CafSmartAuthBridgeTests */ = {
 			isa = PBXGroup;
 			children = (
-				00E356F21AD99517003FC87E /* CafSmartAuthTests.m */,
+				00E356F21AD99517003FC87E /* CafSmartAuthBridgeTests.m */,
 				00E356F01AD99517003FC87E /* Supporting Files */,
 			);
-			path = CafSmartAuthTests;
+			path = CafSmartAuthBridgeTests;
 			sourceTree = "<group>";
 		};
 		00E356F01AD99517003FC87E /* Supporting Files */ = {
@@ -94,15 +94,15 @@
 		10D04BFE2D12465E006EB88D /* CafSmartAuthBridge */ = {
 			isa = PBXGroup;
 			children = (
-				10D04C0C2D12FF07006EB88D /* CafSmartAuth.mm */,
-				10D04C022D12474E006EB88D /* CafSmartAuthModule.swift */,
-				10D04C042D124842006EB88D /* CafSmartAuth.h */,
-				10D04C082D12497F006EB88D /* CafSmartAuthSettings.swift */,
+				10336D6C2D13115700F00668 /* CafSmartAuthBridgeSettings.swift */,
+				10336D6A2D13114D00F00668 /* CafSmartAuthBridgeModule.swift */,
+				10D04C0C2D12FF07006EB88D /* CafSmartAuthBridge.mm */,
+				10D04C042D124842006EB88D /* CafSmartAuthBridge.h */,
 			);
 			name = CafSmartAuthBridge;
 			sourceTree = "<group>";
 		};
-		13B07FAE1A68108700A75B9A /* CafSmartAuth */ = {
+		13B07FAE1A68108700A75B9A /* CafSmartAuthBridge */ = {
 			isa = PBXGroup;
 			children = (
 				10D04BFE2D12465E006EB88D /* CafSmartAuthBridge */,
@@ -112,17 +112,17 @@
 				13B07FB61A68108700A75B9A /* Info.plist */,
 				81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */,
 				13B07FB71A68108700A75B9A /* main.m */,
-				10D04C0B2D124B41006EB88D /* CafSmartAuth-Bridging-Header.h */,
+				10D04C0B2D124B41006EB88D /* CafSmartAuthBridge-Bridging-Header.h */,
 			);
-			name = CafSmartAuth;
+			name = CafSmartAuthBridge;
 			sourceTree = "<group>";
 		};
 		2D16E6871FA4F8E400B85C8A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
 				ED297162215061F000B7C4FE /* JavaScriptCore.framework */,
-				5DCACB8F33CDC322A6C60F78 /* libPods-CafSmartAuth.a */,
-				19F6CBCC0A4E27FBF8BF4A61 /* libPods-CafSmartAuth-CafSmartAuthTests.a */,
+				5DCACB8F33CDC322A6C60F78 /* libPods-CafSmartAuthBridge.a */,
+				19F6CBCC0A4E27FBF8BF4A61 /* libPods-CafSmartAuthBridge-CafSmartAuthBridgeTests.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -137,9 +137,9 @@
 		83CBB9F61A601CBA00E9B192 = {
 			isa = PBXGroup;
 			children = (
-				13B07FAE1A68108700A75B9A /* CafSmartAuth */,
+				13B07FAE1A68108700A75B9A /* CafSmartAuthBridge */,
 				832341AE1AAA6A7D00B99B32 /* Libraries */,
-				00E356EF1AD99517003FC87E /* CafSmartAuthTests */,
+				00E356EF1AD99517003FC87E /* CafSmartAuthBridgeTests */,
 				83CBBA001A601CBA00E9B192 /* Products */,
 				2D16E6871FA4F8E400B85C8A /* Frameworks */,
 				BBD78D7AC51CEA395F1C20DB /* Pods */,
@@ -152,8 +152,8 @@
 		83CBBA001A601CBA00E9B192 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				13B07F961A680F5B00A75B9A /* CafSmartAuth.app */,
-				00E356EE1AD99517003FC87E /* CafSmartAuthTests.xctest */,
+				13B07F961A680F5B00A75B9A /* CafSmartAuthBridge.app */,
+				00E356EE1AD99517003FC87E /* CafSmartAuthBridgeTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -161,10 +161,10 @@
 		BBD78D7AC51CEA395F1C20DB /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				3B4392A12AC88292D35C810B /* Pods-CafSmartAuth.debug.xcconfig */,
-				5709B34CF0A7D63546082F79 /* Pods-CafSmartAuth.release.xcconfig */,
-				5B7EB9410499542E8C5724F5 /* Pods-CafSmartAuth-CafSmartAuthTests.debug.xcconfig */,
-				89C6BE57DB24E9ADA2F236DE /* Pods-CafSmartAuth-CafSmartAuthTests.release.xcconfig */,
+				3B4392A12AC88292D35C810B /* Pods-CafSmartAuthBridge.debug.xcconfig */,
+				5709B34CF0A7D63546082F79 /* Pods-CafSmartAuthBridge.release.xcconfig */,
+				5B7EB9410499542E8C5724F5 /* Pods-CafSmartAuthBridge-CafSmartAuthBridgeTests.debug.xcconfig */,
+				89C6BE57DB24E9ADA2F236DE /* Pods-CafSmartAuthBridge-CafSmartAuthBridgeTests.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -172,9 +172,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		00E356ED1AD99517003FC87E /* CafSmartAuthTests */ = {
+		00E356ED1AD99517003FC87E /* CafSmartAuthBridgeTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 00E357021AD99517003FC87E /* Build configuration list for PBXNativeTarget "CafSmartAuthTests" */;
+			buildConfigurationList = 00E357021AD99517003FC87E /* Build configuration list for PBXNativeTarget "CafSmartAuthBridgeTests" */;
 			buildPhases = (
 				A55EABD7B0C7F3A422A6CC61 /* [CP] Check Pods Manifest.lock */,
 				00E356EA1AD99517003FC87E /* Sources */,
@@ -188,13 +188,14 @@
 			dependencies = (
 				00E356F51AD99517003FC87E /* PBXTargetDependency */,
 			);
-			name = CafSmartAuthTests;
-			productReference = 00E356EE1AD99517003FC87E /* CafSmartAuthTests.xctest */;
+			name = CafSmartAuthBridgeTests;
+			productName = CafSmartAuthBridgeTests;
+			productReference = 00E356EE1AD99517003FC87E /* CafSmartAuthBridgeTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		13B07F861A680F5B00A75B9A /* CafSmartAuth */ = {
+		13B07F861A680F5B00A75B9A /* CafSmartAuthBridge */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "CafSmartAuth" */;
+			buildConfigurationList = 13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "CafSmartAuthBridge" */;
 			buildPhases = (
 				C38B50BA6285516D6DCD4F65 /* [CP] Check Pods Manifest.lock */,
 				13B07F871A680F5B00A75B9A /* Sources */,
@@ -208,9 +209,9 @@
 			);
 			dependencies = (
 			);
-			name = CafSmartAuth;
-			productName = CafSmartAuth;
-			productReference = 13B07F961A680F5B00A75B9A /* CafSmartAuth.app */;
+			name = CafSmartAuthBridge;
+			productName = CafSmartAuthBridge;
+			productReference = 13B07F961A680F5B00A75B9A /* CafSmartAuthBridge.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -230,7 +231,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 83CBB9FA1A601CBA00E9B192 /* Build configuration list for PBXProject "CafSmartAuth" */;
+			buildConfigurationList = 83CBB9FA1A601CBA00E9B192 /* Build configuration list for PBXProject "CafSmartAuthBridge" */;
 			compatibilityVersion = "Xcode 12.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -243,8 +244,8 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				13B07F861A680F5B00A75B9A /* CafSmartAuth */,
-				00E356ED1AD99517003FC87E /* CafSmartAuthTests */,
+				13B07F861A680F5B00A75B9A /* CafSmartAuthBridge */,
+				00E356ED1AD99517003FC87E /* CafSmartAuthBridgeTests */,
 			);
 		};
 /* End PBXProject section */
@@ -291,15 +292,15 @@
 			files = (
 			);
 			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-CafSmartAuth/Pods-CafSmartAuth-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-CafSmartAuthBridge/Pods-CafSmartAuthBridge-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-CafSmartAuth/Pods-CafSmartAuth-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-CafSmartAuthBridge/Pods-CafSmartAuthBridge-frameworks-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-CafSmartAuth/Pods-CafSmartAuth-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-CafSmartAuthBridge/Pods-CafSmartAuthBridge-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		A55EABD7B0C7F3A422A6CC61 /* [CP] Check Pods Manifest.lock */ = {
@@ -317,7 +318,7 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-CafSmartAuth-CafSmartAuthTests-checkManifestLockResult.txt",
+				"$(DERIVED_FILE_DIR)/Pods-CafSmartAuthBridge-CafSmartAuthBridgeTests-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -339,7 +340,7 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-CafSmartAuth-checkManifestLockResult.txt",
+				"$(DERIVED_FILE_DIR)/Pods-CafSmartAuthBridge-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -352,15 +353,15 @@
 			files = (
 			);
 			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-CafSmartAuth-CafSmartAuthTests/Pods-CafSmartAuth-CafSmartAuthTests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-CafSmartAuthBridge-CafSmartAuthBridgeTests/Pods-CafSmartAuthBridge-CafSmartAuthBridgeTests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-CafSmartAuth-CafSmartAuthTests/Pods-CafSmartAuth-CafSmartAuthTests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-CafSmartAuthBridge-CafSmartAuthBridgeTests/Pods-CafSmartAuthBridge-CafSmartAuthBridgeTests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-CafSmartAuth-CafSmartAuthTests/Pods-CafSmartAuth-CafSmartAuthTests-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-CafSmartAuthBridge-CafSmartAuthBridgeTests/Pods-CafSmartAuthBridge-CafSmartAuthBridgeTests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		E235C05ADACE081382539298 /* [CP] Copy Pods Resources */ = {
@@ -369,15 +370,15 @@
 			files = (
 			);
 			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-CafSmartAuth/Pods-CafSmartAuth-resources-${CONFIGURATION}-input-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-CafSmartAuthBridge/Pods-CafSmartAuthBridge-resources-${CONFIGURATION}-input-files.xcfilelist",
 			);
 			name = "[CP] Copy Pods Resources";
 			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-CafSmartAuth/Pods-CafSmartAuth-resources-${CONFIGURATION}-output-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-CafSmartAuthBridge/Pods-CafSmartAuthBridge-resources-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-CafSmartAuth/Pods-CafSmartAuth-resources.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-CafSmartAuthBridge/Pods-CafSmartAuthBridge-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		F6A41C54EA430FDDC6A6ED99 /* [CP] Copy Pods Resources */ = {
@@ -386,15 +387,15 @@
 			files = (
 			);
 			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-CafSmartAuth-CafSmartAuthTests/Pods-CafSmartAuth-CafSmartAuthTests-resources-${CONFIGURATION}-input-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-CafSmartAuthBridge-CafSmartAuthBridgeTests/Pods-CafSmartAuthBridge-CafSmartAuthBridgeTests-resources-${CONFIGURATION}-input-files.xcfilelist",
 			);
 			name = "[CP] Copy Pods Resources";
 			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-CafSmartAuth-CafSmartAuthTests/Pods-CafSmartAuth-CafSmartAuthTests-resources-${CONFIGURATION}-output-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-CafSmartAuthBridge-CafSmartAuthBridgeTests/Pods-CafSmartAuthBridge-CafSmartAuthBridgeTests-resources-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-CafSmartAuth-CafSmartAuthTests/Pods-CafSmartAuth-CafSmartAuthTests-resources.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-CafSmartAuthBridge-CafSmartAuthBridgeTests/Pods-CafSmartAuthBridge-CafSmartAuthBridgeTests-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -404,7 +405,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				00E356F31AD99517003FC87E /* CafSmartAuthTests.m in Sources */,
+				00E356F31AD99517003FC87E /* CafSmartAuthBridgeTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -414,9 +415,9 @@
 			files = (
 				13B07FBC1A68108700A75B9A /* AppDelegate.mm in Sources */,
 				13B07FC11A68108700A75B9A /* main.m in Sources */,
-				10D04C0D2D12FF07006EB88D /* CafSmartAuth.mm in Sources */,
-				10D04C032D12474E006EB88D /* CafSmartAuthModule.swift in Sources */,
-				10D04C092D12497F006EB88D /* CafSmartAuthSettings.swift in Sources */,
+				10D04C0D2D12FF07006EB88D /* CafSmartAuthBridge.mm in Sources */,
+				10336D6D2D13115700F00668 /* CafSmartAuthBridgeSettings.swift in Sources */,
+				10336D6B2D13114D00F00668 /* CafSmartAuthBridgeModule.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -425,7 +426,7 @@
 /* Begin PBXTargetDependency section */
 		00E356F51AD99517003FC87E /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 13B07F861A680F5B00A75B9A /* CafSmartAuth */;
+			target = 13B07F861A680F5B00A75B9A /* CafSmartAuthBridge */;
 			targetProxy = 00E356F41AD99517003FC87E /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -433,7 +434,7 @@
 /* Begin XCBuildConfiguration section */
 		00E356F61AD99517003FC87E /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 5B7EB9410499542E8C5724F5 /* Pods-CafSmartAuth-CafSmartAuthTests.debug.xcconfig */;
+			baseConfigurationReference = 5B7EB9410499542E8C5724F5 /* Pods-CafSmartAuthBridge-CafSmartAuthBridgeTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -441,7 +442,7 @@
 					"DEBUG=1",
 					"$(inherited)",
 				);
-				INFOPLIST_FILE = CafSmartAuthTests/Info.plist;
+				INFOPLIST_FILE = CafSmartAuthBridgeTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -453,20 +454,20 @@
 					"-lc++",
 					"$(inherited)",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = io.caf.smartauth;
+				PRODUCT_BUNDLE_IDENTIFIER = io.caf.smartauthbridge;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/CafSmartAuth.app/CafSmartAuth";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/CafSmartAuthBridge.app/CafSmartAuthBridge";
 			};
 			name = Debug;
 		};
 		00E356F71AD99517003FC87E /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 89C6BE57DB24E9ADA2F236DE /* Pods-CafSmartAuth-CafSmartAuthTests.release.xcconfig */;
+			baseConfigurationReference = 89C6BE57DB24E9ADA2F236DE /* Pods-CafSmartAuthBridge-CafSmartAuthBridgeTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				COPY_PHASE_STRIP = NO;
-				INFOPLIST_FILE = CafSmartAuthTests/Info.plist;
+				INFOPLIST_FILE = CafSmartAuthBridgeTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -478,23 +479,23 @@
 					"-lc++",
 					"$(inherited)",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = io.caf.smartauth;
+				PRODUCT_BUNDLE_IDENTIFIER = io.caf.smartauthbridge;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/CafSmartAuth.app/CafSmartAuth";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/CafSmartAuthBridge.app/CafSmartAuthBridge";
 			};
 			name = Release;
 		};
 		13B07F941A680F5B00A75B9A /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 3B4392A12AC88292D35C810B /* Pods-CafSmartAuth.debug.xcconfig */;
+			baseConfigurationReference = 3B4392A12AC88292D35C810B /* Pods-CafSmartAuthBridge.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = K64X6K3FM6;
 				ENABLE_BITCODE = NO;
-				INFOPLIST_FILE = CafSmartAuth/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = CafSmartAuth;
+				INFOPLIST_FILE = CafSmartAuthBridge/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = CafSmartAuthBridge;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -505,9 +506,9 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = io.caf.smartauth;
-				PRODUCT_NAME = CafSmartAuth;
-				SWIFT_OBJC_BRIDGING_HEADER = "CafSmartAuth-Bridging-Header.h";
+				PRODUCT_BUNDLE_IDENTIFIER = io.caf.smartauthbridge;
+				PRODUCT_NAME = CafSmartAuthBridge;
+				SWIFT_OBJC_BRIDGING_HEADER = "CafSmartAuthBridge-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
@@ -516,14 +517,14 @@
 		};
 		13B07F951A680F5B00A75B9A /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 5709B34CF0A7D63546082F79 /* Pods-CafSmartAuth.release.xcconfig */;
+			baseConfigurationReference = 5709B34CF0A7D63546082F79 /* Pods-CafSmartAuthBridge.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = K64X6K3FM6;
-				INFOPLIST_FILE = CafSmartAuth/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = CafSmartAuth;
+				INFOPLIST_FILE = CafSmartAuthBridge/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = CafSmartAuthBridge;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -534,9 +535,9 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = io.caf.smartauth;
-				PRODUCT_NAME = CafSmartAuth;
-				SWIFT_OBJC_BRIDGING_HEADER = "CafSmartAuth-Bridging-Header.h";
+				PRODUCT_BUNDLE_IDENTIFIER = io.caf.smartauthbridge;
+				PRODUCT_NAME = CafSmartAuthBridge;
+				SWIFT_OBJC_BRIDGING_HEADER = "CafSmartAuthBridge-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
@@ -695,7 +696,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		00E357021AD99517003FC87E /* Build configuration list for PBXNativeTarget "CafSmartAuthTests" */ = {
+		00E357021AD99517003FC87E /* Build configuration list for PBXNativeTarget "CafSmartAuthBridgeTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				00E356F61AD99517003FC87E /* Debug */,
@@ -704,7 +705,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "CafSmartAuth" */ = {
+		13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "CafSmartAuthBridge" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				13B07F941A680F5B00A75B9A /* Debug */,
@@ -713,7 +714,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		83CBB9FA1A601CBA00E9B192 /* Build configuration list for PBXProject "CafSmartAuth" */ = {
+		83CBB9FA1A601CBA00E9B192 /* Build configuration list for PBXProject "CafSmartAuthBridge" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				83CBBA201A601CBA00E9B192 /* Debug */,

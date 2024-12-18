@@ -1,4 +1,4 @@
-package io.caf.smartauth
+package io.caf.smartauthbridge
 
 import android.app.Application
 import com.facebook.react.PackageList

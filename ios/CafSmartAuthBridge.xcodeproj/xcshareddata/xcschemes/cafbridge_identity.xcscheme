@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
-               BuildableName = "CafSmartAuth.app"
-               BlueprintName = "CafSmartAuth"
-               ReferencedContainer = "container:CafSmartAuth.xcodeproj">
+               BuildableName = "CafSmartAuthBridge.app"
+               BlueprintName = "CafSmartAuthBridge"
+               ReferencedContainer = "container:CafSmartAuthBridge.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -33,9 +33,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "00E356ED1AD99517003FC87E"
-               BuildableName = "CafSmartAuthTests.xctest"
-               BlueprintName = "CafSmartAuthTests"
-               ReferencedContainer = "container:CafSmartAuth.xcodeproj">
+               BuildableName = "CafSmartAuthBridgeTests.xctest"
+               BlueprintName = "CafSmartAuthBridgeTests"
+               ReferencedContainer = "container:CafSmartAuthBridge.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -55,9 +55,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
-            BuildableName = "CafSmartAuth.app"
-            BlueprintName = "CafSmartAuth"
-            ReferencedContainer = "container:CafSmartAuth.xcodeproj">
+            BuildableName = "CafSmartAuthBridge.app"
+            BlueprintName = "CafSmartAuthBridge"
+            ReferencedContainer = "container:CafSmartAuthBridge.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </LaunchAction>
@@ -72,9 +72,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
-            BuildableName = "CafSmartAuth.app"
-            BlueprintName = "CafSmartAuth"
-            ReferencedContainer = "container:CafSmartAuth.xcodeproj">
+            BuildableName = "CafSmartAuthBridge.app"
+            BlueprintName = "CafSmartAuthBridge"
+            ReferencedContainer = "container:CafSmartAuthBridge.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

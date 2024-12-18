@@ -1,4 +1,4 @@
-package io.caf.smartauth.smartauthbridge
+package io.caf.smartauthbridge
 
 import android.Manifest
 import android.app.Activity
@@ -20,16 +20,16 @@ import io.caf.smartauth.input.CafVerifyPolicyListener
 import io.caf.smartauth.output.CafFailure
 import javax.annotation.Nonnull
 
-class CafSmartAuthModule(private val reactContext: ReactApplicationContext) :
+class CafSmartAuthBridgeModule(private val reactContext: ReactApplicationContext) :
     ReactContextBaseJavaModule(reactContext) {
 
     @Nonnull
     override fun getName(): String {
-        return CAF_SMART_AUTH_MODULE
+        return CAF_SMART_AUTH_BRIDGE_MODULE
     }
 
     private fun build(mfaToken: String, faceAuthToken: String, settings: String): CafSmartAuth {
-        val faceAuthenticationSettings = CafSmartAuthSettings(settings = settings)
+        val faceAuthenticationSettings = CafSmartAuthBridgeSettings(settings = settings)
 
         return CafSmartAuth.CafBuilder(mfaToken, reactContext)
             .apply {
@@ -144,7 +144,7 @@ class CafSmartAuthModule(private val reactContext: ReactApplicationContext) :
     companion object {
         private const val REQUEST_CODE = 1234
 
-        private const val CAF_SMART_AUTH_MODULE = "CafSmartAuthModule"
+        private const val CAF_SMART_AUTH_BRIDGE_MODULE = "CafSmartAuthBridgeModule"
 
         private const val CAF_SMART_AUTH_SUCCESS_EVENT = "CafSmartAuth_Success"
         private const val CAF_SMART_AUTH_PENDING_EVENT = "CafSmartAuth_Pending"

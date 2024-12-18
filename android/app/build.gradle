@@ -75,9 +75,9 @@ android {
     buildToolsVersion rootProject.ext.buildToolsVersion
     compileSdk rootProject.ext.compileSdkVersion
 
-    namespace "io.caf.smartauth"
+    namespace "io.caf.smartauthbridge"
     defaultConfig {
-        applicationId "io.caf.smartauth"
+        applicationId "io.caf.smartauthbridge"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1

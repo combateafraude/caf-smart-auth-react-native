@@ -28,7 +28,7 @@ if linkage != nil
   use_frameworks! :linkage => linkage.to_sym
 end
 
-target 'CafSmartAuth' do
+target 'CafSmartAuthBridge' do
   config = use_native_modules!
 
   pod 'CafSmartAuth', '~> 1.0.0-beta1'
@@ -44,7 +44,7 @@ target 'CafSmartAuth' do
     :app_path => "#{Pod::Config.instance.installation_root}/.."
   )
 
-  target 'CafSmartAuthTests' do
+  target 'CafSmartAuthBridgeTests' do
     inherit! :complete
     # Pods for testing
   end

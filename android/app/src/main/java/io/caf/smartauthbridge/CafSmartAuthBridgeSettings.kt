@@ -1,4 +1,4 @@
-package io.caf.smartauth.smartauthbridge
+package io.caf.smartauthbridge
 
 import io.caf.smartauth.input.CafFilterStyle
 import io.caf.smartauth.input.CafStage
@@ -13,7 +13,7 @@ internal data class CafFaceAuthenticationSettingsModel(
     val filter: CafFilterStyle?
 )
 
-internal class CafSmartAuthSettings(settings: String) : Serializable {
+internal class CafSmartAuthBridgeSettings(settings: String) : Serializable {
     val cafStage: CafStage?
     val faceAuthenticatorSettings: CafFaceAuthenticationSettingsModel?
 
