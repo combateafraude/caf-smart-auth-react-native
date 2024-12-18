@@ -1,10 +1,10 @@
-package com.cafbridge_identity
+package io.caf.smartauth
 
-import com.cafbridge_identity.cafsmartauthbridge.CafSmartAuthModule
 import com.facebook.react.ReactPackage
 import com.facebook.react.bridge.NativeModule
 import com.facebook.react.bridge.ReactApplicationContext
 import com.facebook.react.uimanager.ViewManager
+import io.caf.smartauth.smartauthbridge.CafSmartAuthModule
 
 class CafPackage : ReactPackage {
     override fun createNativeModules(reactContext: ReactApplicationContext): List<NativeModule> {

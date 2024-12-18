@@ -1,4 +1,4 @@
-package com.cafbridge_identity.cafsmartauthbridge
+package io.caf.smartauth.smartauthbridge
 
 import android.Manifest
 import android.app.Activity

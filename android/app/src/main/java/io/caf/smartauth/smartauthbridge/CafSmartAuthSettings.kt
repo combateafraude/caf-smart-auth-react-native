@@ -1,4 +1,4 @@
-package com.cafbridge_identity.cafsmartauthbridge
+package io.caf.smartauth.smartauthbridge
 
 import io.caf.smartauth.input.CafFilterStyle
 import io.caf.smartauth.input.CafStage
