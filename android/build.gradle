@@ -25,7 +25,7 @@ buildscript {
 
 allprojects {
     repositories {
-       google()
+        google()
         mavenCentral()
         //Your maven should be like this
         maven { url = uri("https://repo.combateafraude.com/android/release") }
