@@ -4,18 +4,10 @@
     <uses-feature android:name="android.hardware.telephony" />
     <uses-feature android:name="android.hardware.camera" />
 
-
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.CAMERA" />
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"
-        tools:ignore="CoarseFineLocation" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.MANAGE_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"
-        tools:ignore="CoarseFineLocation" />
-    <uses-permission android:name="android.permission.WRITE_APN_SETTINGS"
-        tools:ignore="ProtectedPermissions" />
-
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
 
     <application
       android:name=".MainApplication"
@@ -36,6 +28,5 @@
             <category android:name="android.intent.category.LAUNCHER" />
         </intent-filter>
       </activity>
-        <activity android:name=".CafIdentityActivity" android:label="CafIdentityActivity"></activity>
     </application>
 </manifest>
