@@ -40,14 +40,7 @@ export default function App() {
       <View style={styles.container}>
         <Button
           title="Start CafSmartAuth"
-          onPress={() =>
-            startSmartAuth(
-              "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiI2NmY1YzU0NjhlMWI3YTAwMDg2OGRhZGEifQ.5pm1Pq3fipLfuWOzxMYCAHirML8nzWWkf4O10u1ov68",
-              "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiI2NzA0MWIxODczMzFkZTAwMDgyNjZkMDMifQ.a6BRVT35JLPRtlkGXM9jVsX817PuVKQ2UsMqEXz0GJM",
-              "todas",
-              "43485449806"
-            )
-          }
+          onPress={() => startSmartAuth("", "", "", "")}
         />
 
         <View>
