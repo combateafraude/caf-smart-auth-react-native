@@ -1,0 +1,9 @@
+{
+  "platforms": ["apple", "android"],
+  "apple": {
+    "modules": ["CafSmartAuthBridgeModule"]
+  },
+  "android": {
+    "modules": ["io.caf.smartauthbridge.CafSmartAuthBridgeModule"]
+  }
+}
