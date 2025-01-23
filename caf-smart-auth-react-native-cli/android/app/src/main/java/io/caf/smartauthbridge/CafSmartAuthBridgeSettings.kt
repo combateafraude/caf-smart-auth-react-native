@@ -18,22 +18,29 @@ internal class CafSmartAuthBridgeSettings(settings: String) : Serializable {
     init {
         val jsonObject = JSONObject(settings)
 
-        cafStage = if (jsonObject.has(STAGE)) CafStage.values()[jsonObject.getInt(STAGE)]
-        else null
+        cafStage = jsonObject.takeIf {
+            it.has(STAGE)
+        }?.let {
+            CafStage.values()[it.getInt(STAGE)]
+        }
 
-        faceAuthenticatorSettings = if (jsonObject.has(FACE_AUTHENTICATION_SETTINGS)) {
-            val faceAuthenticatorSettings = jsonObject.getJSONObject(FACE_AUTHENTICATION_SETTINGS)
+        faceAuthenticatorSettings = jsonObject.takeIf {
+            it.has(FACE_AUTHENTICATION_SETTINGS)
+        }?.let {
+            val faceAuthenticatorSettings = it.getJSONObject(FACE_AUTHENTICATION_SETTINGS)
 
-            val filterStyle = if (faceAuthenticatorSettings.has(FILTER)) {
+            val filterStyle = faceAuthenticatorSettings.takeIf { settings ->
+                settings.has(FILTER)
+            }?.let {
                 CafFilterStyle.values()[faceAuthenticatorSettings.getInt(FILTER)]
-            } else null
+            }
 
             CafFaceAuthenticationSettingsModel(
                 faceAuthenticatorSettings.optBoolean(LOADING_SCREEN),
                 faceAuthenticatorSettings.optBoolean(ENABLE_SCREEN_CAPTURE),
                 filterStyle ?: CafFilterStyle.LINE_DRAWING
             )
-        } else null
+        }
     }
 
     private companion object {

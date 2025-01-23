@@ -3,6 +3,8 @@ apply plugin: 'com.android.library'
 group = 'io.caf.smartauthbridge'
 version = '0.1.0'
 
+def cafSmartAuthVersion = "1.0.0-beta-1"
+
 def expoModulesCorePlugin = new File(project(":expo-modules-core").projectDir.absolutePath, "ExpoModulesCorePlugin.gradle")
 apply from: expoModulesCorePlugin
 applyKotlinExpoModulesCorePlugin()
@@ -43,6 +45,5 @@ android {
 }
 
 dependencies {
-  implementation("io.caf.sdk:smart-auth:1.0.0-beta-1")
-  implementation("com.combateafraude.sdk:new-face-liveness:3.2.3")
+  implementation("io.caf.sdk:smart-auth:$cafSmartAuthVersion")
 }

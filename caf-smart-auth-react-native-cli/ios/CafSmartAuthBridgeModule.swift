@@ -50,16 +50,16 @@ class CafSmartAuthBridgeModule: RCTEventEmitter {
   private func build(
     mfaToken: String,
     faceAuthToken: String,
-    settings: CafSmartAuthBridgeSettingsModel
+    settings: CafSmartAuthBridgeSettingsModel?
   ) -> CafSmartAuthSdk {
     let builder = CafSmartAuthSdk.CafBuilder(mobileToken: mfaToken)
     
-    if let stage = settings.stage, let cafStage = CAFStage(rawValue: stage) {
+    if let stage = settings?.stage, let cafStage = CAFStage(rawValue: stage) {
       _ = builder.setStage(cafStage)
     }
     
     let filter: CafFilterStyle = {
-      if let faceSettings = settings.faceAuthenticationSettings, faceSettings.filter == 0 {
+      if let faceSettings = settings?.faceAuthenticationSettings, faceSettings.filter == 0 {
         return .natural
       }
       return .lineDrawing
@@ -68,7 +68,7 @@ class CafSmartAuthBridgeModule: RCTEventEmitter {
     _ = builder.setLivenessSettings(
       CafFaceLivenessSettings(
         faceLivenessToken: faceAuthToken,
-        useLoadingScreen: settings.faceAuthenticationSettings?.loadingScreen ?? false,
+        useLoadingScreen: settings?.faceAuthenticationSettings?.loadingScreen ?? false,
         filter: filter
       )
     )
@@ -127,7 +127,7 @@ class CafSmartAuthBridgeModule: RCTEventEmitter {
   
   
   @objc(startSmartAuth:livenessToken:personId:policyId:settings:)
-  func startSmartAuth(mfaToken: String, faceAuthToken: String, personId: String, policyId: String, settings: String) {
+  func startSmartAuth(mfaToken: String, faceAuthToken: String, personId: String, policyId: String, settings: String?) {
     DispatchQueue.main.async {
       self.smartAuth = self.build(
         mfaToken: mfaToken, faceAuthToken: faceAuthToken, settings: CafSmartAuthBridgeSettings().parseJson(settings: settings)!

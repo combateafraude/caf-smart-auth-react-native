@@ -110,6 +110,8 @@ android {
     }
 }
 
+def cafSmartAuthVersion = "1.0.0-beta-1"
+
 dependencies {
     // The version of react-native is set by the React Native Gradle Plugin
     implementation("com.facebook.react:react-android")
@@ -121,8 +123,7 @@ dependencies {
         implementation jscFlavor
     }
 
-    implementation("io.caf.sdk:smart-auth:1.0.0-beta-1")
-    implementation("com.combateafraude.sdk:new-face-liveness:3.2.3")
+    implementation("io.caf.sdk:smart-auth:$cafSmartAuthVersion")
 }
 
 apply from: file("../../node_modules/@react-native-community/cli-platform-android/native_modules.gradle"); applyNativeModulesAppBuildGradle(project)

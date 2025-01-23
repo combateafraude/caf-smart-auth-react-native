@@ -44,10 +44,11 @@ public class CafSmartAuthBridgeModule: Module {
         )
         
         // Defines a JavaScript synchronous function that runs the native code on the JavaScript thread.
-        Function(CafSmartAuthBridgeConstants.startSmartAuth) { (mfaToken: String, faceAuthToken: String, personId: String, policyId: String, settings: String) -> Void in
+        Function(CafSmartAuthBridgeConstants.startSmartAuth) { (mfaToken: String, faceAuthToken: String, personId: String, policyId: String, settings: String?) -> Void in
             DispatchQueue.main.async {
+               
                 self.smartAuth = self.build(
-                    mfaToken: mfaToken, faceAuthToken: faceAuthToken, settings: CafSmartAuthBridgeSettings().parseJson(settings: settings)!
+                    mfaToken: mfaToken, faceAuthToken: faceAuthToken, settings: CafSmartAuthBridgeSettings().parseJson(settings: settings)
                 )
                 
                 self.smartAuth?.verifyPolicy(personID: personId, policyId: policyId, listener: self.setupListener())
@@ -58,16 +59,16 @@ public class CafSmartAuthBridgeModule: Module {
     private func build(
         mfaToken: String,
         faceAuthToken: String,
-        settings: CafSmartAuthBridgeSettingsModel
+        settings: CafSmartAuthBridgeSettingsModel?
     ) -> CafSmartAuthSdk {
         let builder = CafSmartAuthSdk.CafBuilder(mobileToken: mfaToken)
         
-        if let stage = settings.stage, let cafStage = CAFStage(rawValue: stage) {
+        if let stage = settings?.stage, let cafStage = CAFStage(rawValue: stage) {
             _ = builder.setStage(cafStage)
         }
         
         let filter: CafFilterStyle = {
-            if let faceSettings = settings.faceAuthenticationSettings, faceSettings.filter == 0 {
+            if let faceSettings = settings?.faceAuthenticationSettings, faceSettings.filter == 0 {
                 return .natural
             }
             return .lineDrawing
@@ -76,7 +77,7 @@ public class CafSmartAuthBridgeModule: Module {
         _ = builder.setLivenessSettings(
             CafFaceLivenessSettings(
                 faceLivenessToken: faceAuthToken,
-                useLoadingScreen: settings.faceAuthenticationSettings?.loadingScreen ?? false,
+                useLoadingScreen: settings?.faceAuthenticationSettings?.loadingScreen ?? false,
                 filter: filter
             )
         )

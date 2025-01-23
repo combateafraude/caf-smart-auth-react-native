@@ -1,11 +1,11 @@
 PODS:
   - boost (1.84.0)
-  - CafSmartAuth (1.0.0-beta1):
+  - CafSmartAuth (1.0.0-beta2):
     - CafSolutions (= 1.0.1)
     - FaceLiveness (= 6.3.2)
     - FingerprintPro (= 2.6.0)
   - CafSmartAuthBridgeModule (0.1.0):
-    - CafSmartAuth (= 1.0.0-beta1)
+    - CafSmartAuth (= 1.0.0-beta2)
     - ExpoModulesCore
   - CafSolutions (1.0.1)
   - DoubleConversion (1.1.6)
@@ -1792,8 +1792,8 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   boost: 1dca942403ed9342f98334bf4c3621f011aa7946
-  CafSmartAuth: 390a61fa105e48230c2e0853fafc6becbeced2fd
-  CafSmartAuthBridgeModule: 982c29e97fb831dc7dbf982017ad26bdc26fdc49
+  CafSmartAuth: 75db3c851932697dacbf9e873f57c3189dd0a4fe
+  CafSmartAuthBridgeModule: 6d02d42aff3cc8db3419fc3c70c327ae66c80fe9
   CafSolutions: d509f8672793cc8c022a91b203c84886682ca478
   DoubleConversion: f16ae600a246532c4020132d54af21d0ddb2a385
   EXConstants: cc788e18fb962b77999c16f6b90e551542b1bcf4

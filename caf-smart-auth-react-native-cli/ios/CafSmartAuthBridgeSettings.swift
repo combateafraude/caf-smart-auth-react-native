@@ -2,8 +2,8 @@ import Foundation
 import CafSmartAuth
 
 internal class CafSmartAuthBridgeSettings {
-  internal func parseJson(settings: String) -> CafSmartAuthBridgeSettingsModel? {
-    guard let data = settings.data(using: .utf8) else {
+  internal func parseJson(settings: String?) -> CafSmartAuthBridgeSettingsModel? {
+    guard let data = settings?.data(using: .utf8) else {
       return nil
     }
     

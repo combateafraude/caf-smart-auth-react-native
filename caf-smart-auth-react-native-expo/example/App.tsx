@@ -20,7 +20,7 @@ const IS_ANDROID = Platform.OS === "android";
 export default function App() {
   const { success, cancelled, error, isLoading, pending } = useSmartAuth({
     faceAuthenticationSettings: {
-      loadingScreen: false,
+      loadingScreen: true,
       enableScreenCapture: false,
       filter: CafFilter.LINE_DRAWING,
     },
