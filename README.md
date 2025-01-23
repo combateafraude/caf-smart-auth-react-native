@@ -16,5 +16,5 @@ This repository contains two distinct projects that provide support for **CafSma
 
 ## Documentation
 
-- **caf-smart-auth-react-native-cli**: [Access the documentation here](https://docs.caf.io/sdks/react-native/cafsmartauth).
-- **caf-smart-auth-react-native-expo**: Documentation will be created soon and made available in this repository.
+- **caf-smart-auth-react-native-cli**: [Access the documentation here](https://docs.caf.io/sdks/react-native/cafsmartauth/native-modules).
+- **caf-smart-auth-react-native-expo**: [Access the documentation here](https://docs.caf.io/sdks/react-native/cafsmartauth/expo-modules)
