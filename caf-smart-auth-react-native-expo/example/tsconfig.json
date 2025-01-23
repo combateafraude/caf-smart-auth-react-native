@@ -1,0 +1,10 @@
+{
+  "extends": "expo/tsconfig.base",
+  "compilerOptions": {
+    "strict": true,
+    "paths": {
+      "caf-react-native-smart-auth-expo": ["../src/index"],
+      "caf-react-native-smart-auth-expo/*": ["../src/*"]
+    }
+  }
+}
