@@ -18,6 +18,8 @@ private struct CafSmartAuthBridgeConstants {
     static let isCancelled: String = "isCancelled"
     static let isLoading: String = "isLoading"
     static let isLoaded: String = "isLoaded"
+
+    static let cafFilterNaturalIndex: Int = 0
 }
 
 public class CafSmartAuthBridgeModule: Module {
@@ -68,7 +70,7 @@ public class CafSmartAuthBridgeModule: Module {
         }
         
         let filter: CafFilterStyle = {
-            if let faceSettings = settings?.faceAuthenticationSettings, faceSettings.filter == 0 {
+            if let faceSettings = settings?.faceAuthenticationSettings, faceSettings.filter == CafSmartAuthBridgeConstants.cafFilterNaturalIndex {
                 return .natural
             }
             return .lineDrawing

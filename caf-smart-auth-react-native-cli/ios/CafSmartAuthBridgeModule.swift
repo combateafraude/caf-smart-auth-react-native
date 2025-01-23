@@ -2,29 +2,19 @@ import Foundation
 import React
 import CafSmartAuth
 
-private struct CafSmartAuthBridgeEvents {
-  static let cafSmartAuthSuccessEvent: String = "CafSmartAuth_Success"
-  static let cafSmartAuthPendingEvent: String = "CafSmartAuth_Pending"
-  static let cafSmartAuthErrorEvent: String = "CafSmartAuth_Error"
-  static let cafSmartAuthCancelEvent: String = "CafSmartAuth_Cancel"
-  static let cafSmartAuthLoadingEvent: String = "CafSmartAuth_Loading"
-  static let cafSmartAuthLoadedEvent: String = "CafSmartAuth_Loaded"
-}
+private struct CafSmartAuthBridgeConstants { 
+    static let cafSmartAuthSuccessEvent: String = "CafSmartAuth_Success"
+    static let cafSmartAuthPendingEvent: String = "CafSmartAuth_Pending"
+    static let cafSmartAuthErrorEvent: String = "CafSmartAuth_Error"
+    static let cafSmartAuthCancelEvent: String = "CafSmartAuth_Cancel"
+    static let cafSmartAuthLoadingEvent: String = "CafSmartAuth_Loading"
+    static let cafSmartAuthLoadedEvent: String = "CafSmartAuth_Loaded"
+    
+    static let isAuthorized: String = "isAuthorized"
+    static let attestation: String = "attestation"
+    static let errorMessage: String = "message"
 
-internal struct CafFaceAuthenticationSettingsModel: Decodable {
-  let loadingScreen: Bool?
-  let filter: Int?
-}
-
-internal struct CafSmartAuthBridgeSettingsModel: Decodable {
-  let stage: Int?
-  let faceAuthenticationSettings: CafFaceAuthenticationSettingsModel?
-}
-
-private struct CafMutableDictionaries {
-  static let isAuthorized: String = "isAuthorized"
-  static let attestation: String = "attestation"
-  static let message: String = "message"
+    static let cafFilterNaturalIndex: Int = 0
 }
 
 @objc(CafSmartAuthBridgeModule)
@@ -38,12 +28,12 @@ class CafSmartAuthBridgeModule: RCTEventEmitter {
   
   override func supportedEvents() -> [String]! {
     return [
-      CafSmartAuthBridgeEvents.cafSmartAuthSuccessEvent,
-      CafSmartAuthBridgeEvents.cafSmartAuthPendingEvent,
-      CafSmartAuthBridgeEvents.cafSmartAuthErrorEvent,
-      CafSmartAuthBridgeEvents.cafSmartAuthCancelEvent,
-      CafSmartAuthBridgeEvents.cafSmartAuthLoadingEvent,
-      CafSmartAuthBridgeEvents.cafSmartAuthLoadedEvent
+      CafSmartAuthBridgeConstants.cafSmartAuthSuccessEvent,
+      CafSmartAuthBridgeConstants.cafSmartAuthPendingEvent,
+      CafSmartAuthBridgeConstants.cafSmartAuthErrorEvent,
+      CafSmartAuthBridgeConstants.cafSmartAuthCancelEvent,
+      CafSmartAuthBridgeConstants.cafSmartAuthLoadingEvent,
+      CafSmartAuthBridgeConstants.cafSmartAuthLoadedEvent
     ]
   }
   
@@ -59,7 +49,7 @@ class CafSmartAuthBridgeModule: RCTEventEmitter {
     }
     
     let filter: CafFilterStyle = {
-      if let faceSettings = settings?.faceAuthenticationSettings, faceSettings.filter == 0 {
+      if let faceSettings = settings?.faceAuthenticationSettings, faceSettings.filter == CafSmartAuthBridgeConstants.cafFilterNaturalIndex {
         return .natural
       }
       return .lineDrawing
@@ -85,42 +75,42 @@ class CafSmartAuthBridgeModule: RCTEventEmitter {
       switch result {
       case .onSuccess(let response):
         self.emitEvent(
-          name: CafSmartAuthBridgeEvents.cafSmartAuthSuccessEvent,
+          name: CafSmartAuthBridgeConstants.cafSmartAuthSuccessEvent,
           data: [
-            CafMutableDictionaries.isAuthorized: response.isAuthorized,
-            CafMutableDictionaries.attestation: response.attestation
+            CafSmartAuthBridgeConstants.isAuthorized: response.isAuthorized,
+            CafSmartAuthBridgeConstants.attestation: response.attestation
           ]
         )
         self.smartAuth = nil
         
       case .onPending(let response):
         self.emitEvent(
-          name: CafSmartAuthBridgeEvents.cafSmartAuthPendingEvent,
+          name: CafSmartAuthBridgeConstants.cafSmartAuthPendingEvent,
           data: [
-            CafMutableDictionaries.isAuthorized: response.isAuthorized,
-            CafMutableDictionaries.attestation: response.attestation
+            CafSmartAuthBridgeConstants.isAuthorized: response.isAuthorized,
+            CafSmartAuthBridgeConstants.attestation: response.attestation
           ]
         )
         
       case .onError(let error):
         self.emitEvent(
-          name: CafSmartAuthBridgeEvents.cafSmartAuthErrorEvent,
-          data: [CafMutableDictionaries.message: error.localizedDescription]
+          name: CafSmartAuthBridgeConstants.cafSmartAuthErrorEvent,
+          data: [CafSmartAuthBridgeConstants.errorMessage: error.localizedDescription]
         )
         self.smartAuth = nil
         
       case .onCanceled(_):
         self.emitEvent(
-          name: CafSmartAuthBridgeEvents.cafSmartAuthCancelEvent,
+          name: CafSmartAuthBridgeConstants.cafSmartAuthCancelEvent,
           data: true
         )
         self.smartAuth = nil
         
       case .onLoading:
-        self.emitEvent(name: CafSmartAuthBridgeEvents.cafSmartAuthLoadingEvent, data: true)
+        self.emitEvent(name: CafSmartAuthBridgeConstants.cafSmartAuthLoadingEvent, data: true)
         
       case .onLoaded:
-        self.emitEvent(name: CafSmartAuthBridgeEvents.cafSmartAuthLoadedEvent, data: true)
+        self.emitEvent(name: CafSmartAuthBridgeConstants.cafSmartAuthLoadedEvent, data: true)
       }
     }
   }
