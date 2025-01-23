@@ -1,5 +1,12 @@
 import React, { useEffect } from 'react';
-import { SafeAreaView, StyleSheet, Button, Text, Platform } from 'react-native';
+import {
+  SafeAreaView,
+  StyleSheet,
+  Button,
+  Text,
+  Platform,
+  View,
+} from 'react-native';
 
 import { CafFilter, CafStage } from './src/hooks/types';
 
@@ -14,7 +21,7 @@ const IS_ANDROID = Platform.OS === 'android';
 const App: React.FC<React.FC> = () => {
   const { success, cancelled, error, isLoading, pending } = useSmartAuth({
     faceAuthenticationSettings: {
-      loadingScreen: false,
+      loadingScreen: true,
       enableScreenCapture: false,
       filter: CafFilter.LINE_DRAWING,
     },
@@ -30,24 +37,21 @@ const App: React.FC<React.FC> = () => {
   }, []);
 
   return (
-    <SafeAreaView style={styles.container}>
-      <Button
-        title="Start CafSmartAuth"
-        onPress={() =>
-          startSmartAuth(
-            '',
-            '',
-            '',
-            '',
-          )
-        }
-      />
+    <SafeAreaView style={{ flex: 1 }}>
+      <View style={styles.container}>
+        <Button
+          title="Start CafSmartAuth"
+          onPress={() => startSmartAuth('', '', '', '')}
+        />
 
-      <Text>Success {jsonStringify(success)}</Text>
-      <Text>Cancelled {jsonStringify(cancelled)}</Text>
-      <Text>Error {jsonStringify(error)}</Text>
-      <Text>Is Loading {jsonStringify(isLoading)}</Text>
-      <Text>Pending {jsonStringify(pending)}</Text>
+        <View>
+          <Text>Success {jsonStringify(success)}</Text>
+          <Text>Cancelled {jsonStringify(cancelled)}</Text>
+          <Text>Error {jsonStringify(error)}</Text>
+          <Text>Is Loading {jsonStringify(isLoading)}</Text>
+          <Text>Pending {jsonStringify(pending)}</Text>
+        </View>
+      </View>
     </SafeAreaView>
   );
 };
@@ -55,10 +59,10 @@ const App: React.FC<React.FC> = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    alignItems: 'center',
     justifyContent: 'center',
+    gap: 20,
+    width: '100%',
     paddingHorizontal: 20,
-    gap: 8,
   },
 });
 
