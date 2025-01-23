@@ -130,7 +130,7 @@ class CafSmartAuthBridgeModule: RCTEventEmitter {
   func startSmartAuth(mfaToken: String, faceAuthToken: String, personId: String, policyId: String, settings: String?) {
     DispatchQueue.main.async {
       self.smartAuth = self.build(
-        mfaToken: mfaToken, faceAuthToken: faceAuthToken, settings: CafSmartAuthBridgeSettings().parseJson(settings: settings)!
+        mfaToken: mfaToken, faceAuthToken: faceAuthToken, settings: CafSmartAuthBridgeSettings().parseJson(settings: settings)
       )
       
       self.smartAuth?.verifyPolicy(personID: personId, policyId: policyId, listener: self.setupListener())
