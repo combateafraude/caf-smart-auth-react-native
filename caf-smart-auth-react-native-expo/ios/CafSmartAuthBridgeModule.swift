@@ -156,7 +156,7 @@ public class CafSmartAuthBridgeModule: Module {
                 
             case .onError(let error):
                 self.sendEvent(CafSmartAuthBridgeConstants.cafSmartAuthErrorEvent, [
-                    CafSmartAuthBridgeConstants.errorMessage: error.localizedDescription
+                    CafSmartAuthBridgeConstants.errorMessage: error.error.localizedDescription
                 ])
                 self.smartAuth = nil
                 
