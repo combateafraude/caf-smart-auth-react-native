@@ -25,6 +25,23 @@ export interface CafSmartAuthLoaded {
   isLoaded: boolean;
 }
 
+export interface CafSmartAuthTheme {
+  backgroundColor?: string;
+  textColor?: string;
+  progressColor?: string;
+  linkColor?: string;
+  boxBackgroundColor?: string;
+  boxFilledBackgroundColor?: string;
+  boxBorderColor?: string;
+  boxFilledBorderColor?: string;
+  boxTextColor?: string;
+}
+
+export interface CafSmartAuthThemeConfigurator {
+  lightTheme?: CafSmartAuthTheme;
+  darkTheme?: CafSmartAuthTheme;
+}
+
 export interface CafFaceAuthenticationSettings {
   loadingScreen?: boolean;
   enableScreenCapture?: boolean;
@@ -34,6 +51,9 @@ export interface CafFaceAuthenticationSettings {
 export interface CafSmartAuthSettings {
   faceAuthenticationSettings?: CafFaceAuthenticationSettings;
   stage?: CafStage;
+  emailUrl?: string;
+  phoneUrl?: string;
+  theme?: CafSmartAuthThemeConfigurator;
 }
 
 export interface CafSmartAuthResponse {

@@ -1,13 +1,13 @@
 PODS:
   - boost (1.84.0)
-  - CafSmartAuth (1.0.0-beta2):
-    - CafSolutions (= 1.0.1)
-    - FaceLiveness (= 6.3.2)
-    - FingerprintPro (= 2.6.0)
+  - CafSmartAuth (1.2.0):
+    - CafSolutions (= 2.0.3)
+    - FaceLiveness (= 7.1.0)
+    - FingerprintPro (= 2.7.0)
   - CafSmartAuthBridgeModule (0.1.0):
-    - CafSmartAuth (= 1.0.0-beta2)
+    - CafSmartAuth (= 1.2.0)
     - ExpoModulesCore
-  - CafSolutions (1.0.1)
+  - CafSolutions (2.0.3)
   - DoubleConversion (1.1.6)
   - EXConstants (17.0.4):
     - ExpoModulesCore
@@ -44,18 +44,18 @@ PODS:
     - ReactCommon/turbomodule/bridging
     - ReactCommon/turbomodule/core
     - Yoga
-  - FaceLiveness (6.3.2):
-    - CafSolutions (= 1.0.1)
-    - FingerprintPro (= 2.6.0)
-    - iProov (= 12.2.1)
+  - FaceLiveness (7.1.0):
+    - CafSolutions (= 2.0.3)
+    - FingerprintPro (= 2.7.0)
+    - iProov (= 12.3.0)
   - FBLazyVector (0.76.6)
-  - FingerprintPro (2.6.0)
+  - FingerprintPro (2.7.0)
   - fmt (9.1.0)
   - glog (0.3.5)
   - hermes-engine (0.76.6):
     - hermes-engine/Pre-built (= 0.76.6)
   - hermes-engine/Pre-built (0.76.6)
-  - iProov (12.2.1)
+  - iProov (12.3.0)
   - RCT-Folly (2024.01.01.00):
     - boost
     - DoubleConversion
@@ -1792,9 +1792,9 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   boost: 1dca942403ed9342f98334bf4c3621f011aa7946
-  CafSmartAuth: 75db3c851932697dacbf9e873f57c3189dd0a4fe
-  CafSmartAuthBridgeModule: 6d02d42aff3cc8db3419fc3c70c327ae66c80fe9
-  CafSolutions: d509f8672793cc8c022a91b203c84886682ca478
+  CafSmartAuth: 546af61b217ed128e198fe4da95c2e4c93f9b839
+  CafSmartAuthBridgeModule: 7a72edb83680a5727fc6eafbb401fc8636d5089b
+  CafSolutions: 20411e1e1ff433d3da400433cd45c6db09c2f6de
   DoubleConversion: f16ae600a246532c4020132d54af21d0ddb2a385
   EXConstants: cc788e18fb962b77999c16f6b90e551542b1bcf4
   Expo: 7021c4880d0bbd02781e88e213b6786c1200ebdf
@@ -1803,13 +1803,13 @@ SPEC CHECKSUMS:
   ExpoFont: 8b14db1afebf62e9774613a082e402985f4e747c
   ExpoKeepAwake: 1f74cdf53ab3b3aeb7110f18eb053c92e7c3e710
   ExpoModulesCore: 8dc3ee6a2324ab1b5e8be9ede5c4e60b948c1f7f
-  FaceLiveness: c62b4be6d56e6e9db07e35b9c899c4f95321b952
+  FaceLiveness: 6c853bbf712542e3567c971078131ed6d8c12dd2
   FBLazyVector: be509404b5de73a64a74284edcaf73a5d1e128b1
-  FingerprintPro: 3f06f491c77d871ab543b49fd25fddc52dc34f8c
+  FingerprintPro: 0c7dbd28fc83751ca64b06328e2fb22bbc7ed118
   fmt: 10c6e61f4be25dc963c36bd73fc7b1705fe975be
   glog: 08b301085f15bcbb6ff8632a8ebaf239aae04e6a
   hermes-engine: 1949ca944b195a8bde7cbf6316b9068e19cf53c6
-  iProov: d1c8fed3e9b7c1602a326d4789bbf883d3563880
+  iProov: 15d820ec17fe833a1d5d4c9a046f68a0aea7fe4c
   RCT-Folly: bf5c0376ffe4dd2cf438dcf86db385df9fdce648
   RCTDeprecation: 063fc281b30b7dc944c98fe53a7e266dab1a8706
   RCTRequired: 8eda2a5a745f6081157a4f34baac40b65fe02b31

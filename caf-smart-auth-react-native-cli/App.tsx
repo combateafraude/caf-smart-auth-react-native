@@ -23,7 +23,7 @@ const App: React.FC<React.FC> = () => {
     faceAuthenticationSettings: {
       loadingScreen: true,
       enableScreenCapture: false,
-      filter: CafFilter.LINE_DRAWING,
+      filter: CafFilter.NATURAL,
     },
     stage: CafStage.PROD,
   });

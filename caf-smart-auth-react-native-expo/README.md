@@ -23,9 +23,6 @@ npm install caf-smart-auth-react-native-expo
 
 ### Configure for Android
 
-
-
-
 ### Configure for iOS
 
 Run `npx pod-install` after installing the npm package.

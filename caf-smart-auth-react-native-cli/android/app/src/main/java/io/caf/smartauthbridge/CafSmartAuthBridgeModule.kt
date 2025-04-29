@@ -13,6 +13,8 @@ import com.facebook.react.bridge.ReactContextBaseJavaModule
 import com.facebook.react.bridge.ReactMethod
 import com.facebook.react.bridge.WritableNativeMap
 import com.facebook.react.modules.core.DeviceEventManagerModule
+import io.caf.smartauth.domain.model.CafTheme
+import io.caf.smartauth.domain.model.CafThemeConfigurator
 import io.caf.smartauth.input.CafFaceAuthenticatorSettings
 import io.caf.smartauth.input.CafSdkPlatform
 import io.caf.smartauth.input.CafSmartAuth
@@ -29,22 +31,28 @@ class CafSmartAuthBridgeModule(private val reactContext: ReactApplicationContext
     }
 
     private fun build(mfaToken: String, faceAuthToken: String, settings: String): CafSmartAuth {
-        val faceAuthenticationSettings = CafSmartAuthBridgeSettings(settings = settings)
+        val smartAuthSettings = CafSmartAuthBridgeSettings(settings = settings)
 
-        return CafSmartAuth.CafBuilder(mfaToken, reactContext)
-            .apply {
-                setSdkPlatform(CafSdkPlatform.REACT_NATIVE)
-                faceAuthenticationSettings.cafStage?.let { setStage(it) }
-                setFaceAuthenticatorSettings(
-                    CafFaceAuthenticatorSettings(
-                        faceAuthToken,
-                        faceAuthenticationSettings.faceAuthenticatorSettings?.loadingScreen,
-                        faceAuthenticationSettings.faceAuthenticatorSettings?.enableScreenCapture,
-                        faceAuthenticationSettings.faceAuthenticatorSettings?.filter
-                    )
+        return CafSmartAuth.CafBuilder(mfaToken, reactContext).apply {
+            setSdkPlatform(CafSdkPlatform.REACT_NATIVE)
+            smartAuthSettings.cafStage?.let { setStage(it) }
+            smartAuthSettings.emailUrl?.let { setEmailUrl(it) }
+            smartAuthSettings.phoneUrl?.let { setPhoneUrl(it) }
+            setFaceAuthenticatorSettings(
+                CafFaceAuthenticatorSettings(
+                    faceAuthToken,
+                    smartAuthSettings.faceAuthenticatorSettings?.loadingScreen,
+                    smartAuthSettings.faceAuthenticatorSettings?.enableScreenCapture,
+                    smartAuthSettings.faceAuthenticatorSettings?.filter
                 )
-            }
-            .build()
+            )
+            setThemeConfigurator(
+                CafThemeConfigurator(
+                    lightTheme = smartAuthSettings.theme?.lightTheme ?: CafTheme(),
+                    darkTheme = smartAuthSettings.theme?.darkTheme ?: CafTheme()
+                )
+            )
+        }.build()
     }
 
     private fun emitEvent(eventName: String, params: Any) {
@@ -73,7 +81,7 @@ class CafSmartAuthBridgeModule(private val reactContext: ReactApplicationContext
             })
         }
 
-        override fun onError(failure: CafFailure) {
+        override fun onError(failure: CafFailure, message: String?) {
             emitEvent(eventName = CAF_SMART_AUTH_ERROR_EVENT, params = WritableNativeMap().apply {
                 putString(CAF_WRITABLE_MAP_ERROR_MESSAGE, failure.message)
             })
