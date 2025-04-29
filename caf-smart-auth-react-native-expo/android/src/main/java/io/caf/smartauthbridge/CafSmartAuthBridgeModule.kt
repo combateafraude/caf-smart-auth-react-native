@@ -129,9 +129,6 @@ class CafSmartAuthBridgeModule : Module() {
                     CAF_MAP_KEY_ERROR_MESSAGE to failure.message
                 )
             )
-
-            Log.d("CafSmartAuthBridgeModule", "Failure: ${failure.message}")
-            Log.d("CafSmartAuthBridgeModule", "Message: $message")
         }
 
         override fun onCancel() {

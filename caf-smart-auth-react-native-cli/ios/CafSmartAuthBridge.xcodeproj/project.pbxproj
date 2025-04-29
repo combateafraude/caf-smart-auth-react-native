@@ -11,7 +11,6 @@
 		0C80B921A6F3F58F76C31292 /* libPods-CafSmartAuthBridge.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5DCACB8F33CDC322A6C60F78 /* libPods-CafSmartAuthBridge.a */; };
 		10336D6B2D13114D00F00668 /* CafSmartAuthBridgeModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10336D6A2D13114D00F00668 /* CafSmartAuthBridgeModule.swift */; };
 		10336D6D2D13115700F00668 /* CafSmartAuthBridgeSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10336D6C2D13115700F00668 /* CafSmartAuthBridgeSettings.swift */; };
-		1082BA6B2DBB03B500B7C16D /* UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1082BA6A2DBB03AE00B7C16D /* UIColor.swift */; };
 		10D04C0D2D12FF07006EB88D /* CafSmartAuthBridge.mm in Sources */ = {isa = PBXBuildFile; fileRef = 10D04C0C2D12FF07006EB88D /* CafSmartAuthBridge.mm */; };
 		13B07FBC1A68108700A75B9A /* AppDelegate.mm in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.mm */; };
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
@@ -36,7 +35,6 @@
 		00E356F21AD99517003FC87E /* CafSmartAuthBridgeTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CafSmartAuthBridgeTests.m; sourceTree = "<group>"; };
 		10336D6A2D13114D00F00668 /* CafSmartAuthBridgeModule.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CafSmartAuthBridgeModule.swift; sourceTree = "<group>"; };
 		10336D6C2D13115700F00668 /* CafSmartAuthBridgeSettings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CafSmartAuthBridgeSettings.swift; sourceTree = "<group>"; };
-		1082BA6A2DBB03AE00B7C16D /* UIColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColor.swift; sourceTree = "<group>"; };
 		10D04C042D124842006EB88D /* CafSmartAuthBridge.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CafSmartAuthBridge.h; sourceTree = "<group>"; };
 		10D04C0B2D124B41006EB88D /* CafSmartAuthBridge-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "CafSmartAuthBridge-Bridging-Header.h"; sourceTree = "<group>"; };
 		10D04C0C2D12FF07006EB88D /* CafSmartAuthBridge.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = CafSmartAuthBridge.mm; sourceTree = "<group>"; };
@@ -93,18 +91,9 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		1082BA692DBB039D00B7C16D /* Utils */ = {
-			isa = PBXGroup;
-			children = (
-				1082BA6A2DBB03AE00B7C16D /* UIColor.swift */,
-			);
-			path = Utils;
-			sourceTree = "<group>";
-		};
 		10D04BFE2D12465E006EB88D /* CafSmartAuthBridge */ = {
 			isa = PBXGroup;
 			children = (
-				1082BA692DBB039D00B7C16D /* Utils */,
 				10336D6C2D13115700F00668 /* CafSmartAuthBridgeSettings.swift */,
 				10336D6A2D13114D00F00668 /* CafSmartAuthBridgeModule.swift */,
 				10D04C0C2D12FF07006EB88D /* CafSmartAuthBridge.mm */,
@@ -425,7 +414,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				13B07FBC1A68108700A75B9A /* AppDelegate.mm in Sources */,
-				1082BA6B2DBB03B500B7C16D /* UIColor.swift in Sources */,
 				13B07FC11A68108700A75B9A /* main.m in Sources */,
 				10D04C0D2D12FF07006EB88D /* CafSmartAuthBridge.mm in Sources */,
 				10336D6D2D13115700F00668 /* CafSmartAuthBridgeSettings.swift in Sources */,
