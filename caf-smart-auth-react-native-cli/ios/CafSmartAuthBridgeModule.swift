@@ -15,6 +15,11 @@ private struct CafSmartAuthBridgeConstants {
     static let errorMessage: String = "message"
 
     static let cafFilterNaturalIndex: Int = 0
+  
+    static let backgroundColorHex: String = "#FFFFFF"
+    static let textColorHex: String = "#FF000000"
+    static let primaryColorHex: String = "#004AF7"
+    static let boxBackgroundColorHex: String = "#0A004AF7"
 }
 
 @objc(CafSmartAuthBridgeModule)
@@ -44,8 +49,16 @@ class CafSmartAuthBridgeModule: RCTEventEmitter {
   ) -> CafSmartAuthSdk {
     let builder = CafSmartAuthSdk.CafBuilder(mobileToken: mfaToken)
     
-    if let stage = settings?.stage, let cafStage = CAFStage(rawValue: stage) {
+    if let stage = settings?.stage, let cafStage = CafEnvironment(rawValue: stage) {
       _ = builder.setStage(cafStage)
+    }
+    
+    if let emailUrl = settings?.emailUrl {
+      _ = builder.setEmailURL(URL(string: emailUrl))
+    }
+    
+    if let phoneUrl = settings?.phoneUrl {
+      _ = builder.setPhoneURL(URL(string: phoneUrl))
     }
     
     let filter: CafFilterStyle = {
@@ -63,7 +76,45 @@ class CafSmartAuthBridgeModule: RCTEventEmitter {
       )
     )
     
+    let lightTheme = settings?.theme?.lightTheme
+    let darkTheme = settings?.theme?.darkTheme
+    
+    _ = builder.setThemeConfigurator(
+      CafThemeConfigurator(
+        lightTheme: parseTheme(theme: lightTheme),
+        darkTheme: parseTheme(theme: darkTheme)
+      )
+    )
+    
     return builder.build()
+  }
+  
+  private func parseTheme(theme: CafSmartAuthBridgeTheme?) -> CafTheme {
+    if theme != nil {
+      return CafTheme(
+        backgroundColor: theme?.backgroundColor ?? CafSmartAuthBridgeConstants.backgroundColorHex,
+        textColor: theme?.textColor ?? CafSmartAuthBridgeConstants.textColorHex,
+        linkColor: theme?.linkColor ?? CafSmartAuthBridgeConstants.primaryColorHex,
+        boxBorderColor: theme?.boxBorderColor ?? CafSmartAuthBridgeConstants.primaryColorHex,
+        boxFilledBorderColor: theme?.boxFilledBorderColor ?? CafSmartAuthBridgeConstants.primaryColorHex,
+        boxBackgroundColor: theme?.boxBackgroundColor ?? CafSmartAuthBridgeConstants.boxBackgroundColorHex,
+        boxFilledBackgroundColor: theme?.boxFilledBackgroundColor ?? CafSmartAuthBridgeConstants.boxBackgroundColorHex,
+        boxTextColor: theme?.boxTextColor ?? CafSmartAuthBridgeConstants.primaryColorHex,
+        progressColor:  theme?.progressColor ?? CafSmartAuthBridgeConstants.primaryColorHex
+      )
+    } else {
+      return CafTheme(
+        backgroundColor: CafSmartAuthBridgeConstants.backgroundColorHex,
+        textColor: CafSmartAuthBridgeConstants.textColorHex,
+        linkColor: CafSmartAuthBridgeConstants.primaryColorHex,
+        boxBorderColor: CafSmartAuthBridgeConstants.primaryColorHex,
+        boxFilledBorderColor: CafSmartAuthBridgeConstants.primaryColorHex,
+        boxBackgroundColor: CafSmartAuthBridgeConstants.boxBackgroundColorHex,
+        boxFilledBackgroundColor: CafSmartAuthBridgeConstants.boxBackgroundColorHex,
+        boxTextColor: CafSmartAuthBridgeConstants.primaryColorHex,
+        progressColor: CafSmartAuthBridgeConstants.primaryColorHex
+      )
+    }
   }
   
   private func emitEvent(name: String, data: Any) {
@@ -95,7 +146,7 @@ class CafSmartAuthBridgeModule: RCTEventEmitter {
       case .onError(let error):
         self.emitEvent(
           name: CafSmartAuthBridgeConstants.cafSmartAuthErrorEvent,
-          data: [CafSmartAuthBridgeConstants.errorMessage: error.localizedDescription]
+          data: [CafSmartAuthBridgeConstants.errorMessage: error.error.localizedDescription]
         )
         self.smartAuth = nil
         

@@ -31,7 +31,7 @@ end
 target 'CafSmartAuthBridge' do
   config = use_native_modules!
 
-  pod 'CafSmartAuth', '~> 1.0.0-beta2'
+  pod 'CafSmartAuth', '~> 1.2.0'
 
   use_react_native!(
     :path => config[:reactNativePath],

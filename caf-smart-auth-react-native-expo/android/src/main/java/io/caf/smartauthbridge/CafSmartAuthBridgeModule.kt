@@ -5,10 +5,13 @@ import android.app.Activity
 import android.content.pm.PackageManager
 import android.os.Handler
 import android.os.Looper
+import android.util.Log
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import expo.modules.kotlin.modules.Module
 import expo.modules.kotlin.modules.ModuleDefinition
+import io.caf.smartauth.domain.model.CafTheme
+import io.caf.smartauth.domain.model.CafThemeConfigurator
 import io.caf.smartauth.input.CafFaceAuthenticatorSettings
 import io.caf.smartauth.input.CafSdkPlatform
 import io.caf.smartauth.input.CafSmartAuth
@@ -73,22 +76,28 @@ class CafSmartAuthBridgeModule : Module() {
     }
 
     private fun build(mfaToken: String, faceAuthToken: String, settings: String): CafSmartAuth {
-        val faceAuthenticationSettings = CafSmartAuthBridgeSettings(settings = settings)
+        val smartAuthSettings = CafSmartAuthBridgeSettings(settings = settings)
 
-        return CafSmartAuth.CafBuilder(mfaToken, context)
-            .apply {
-                setSdkPlatform(CafSdkPlatform.REACT_NATIVE)
-                faceAuthenticationSettings.cafStage?.let { setStage(it) }
-                setFaceAuthenticatorSettings(
-                    CafFaceAuthenticatorSettings(
-                        faceAuthToken,
-                        faceAuthenticationSettings.faceAuthenticatorSettings?.loadingScreen,
-                        faceAuthenticationSettings.faceAuthenticatorSettings?.enableScreenCapture,
-                        faceAuthenticationSettings.faceAuthenticatorSettings?.filter
-                    )
+        return CafSmartAuth.CafBuilder(mfaToken, context).apply {
+            setSdkPlatform(CafSdkPlatform.REACT_NATIVE)
+            smartAuthSettings.cafStage?.let { setStage(it) }
+            smartAuthSettings.emailUrl?.let { setEmailUrl(it) }
+            smartAuthSettings.phoneUrl?.let { setPhoneUrl(it) }
+            setFaceAuthenticatorSettings(
+                CafFaceAuthenticatorSettings(
+                    faceAuthToken,
+                    smartAuthSettings.faceAuthenticatorSettings?.loadingScreen,
+                    smartAuthSettings.faceAuthenticatorSettings?.enableScreenCapture,
+                    smartAuthSettings.faceAuthenticatorSettings?.filter
                 )
-            }
-            .build()
+            )
+            setThemeConfigurator(
+                CafThemeConfigurator(
+                    lightTheme = smartAuthSettings.theme?.lightTheme ?: CafTheme(),
+                    darkTheme = smartAuthSettings.theme?.darkTheme ?: CafTheme()
+                )
+            )
+        }.build()
     }
 
     private fun setupListener() = object : CafVerifyPolicyListener {
@@ -97,24 +106,33 @@ class CafSmartAuthBridgeModule : Module() {
             attemptId: String?,
             attestation: String?
         ) {
-            sendEvent(CAF_SMART_AUTH_SUCCESS_EVENT, mapOf(
-                CAF_MAP_KEY_IS_AUTHORIZED to isAuthorized,
-                CAF_MAP_KEY_ATTEMPT_ID to (attemptId ?: ""),
-                CAF_MAP_KEY_ATTESTATION to (attestation ?: "")
-            ))
+            sendEvent(
+                CAF_SMART_AUTH_SUCCESS_EVENT, mapOf(
+                    CAF_MAP_KEY_IS_AUTHORIZED to isAuthorized,
+                    CAF_MAP_KEY_ATTEMPT_ID to (attemptId ?: ""),
+                    CAF_MAP_KEY_ATTESTATION to (attestation ?: "")
+                )
+            )
         }
 
         override fun onPending(isAuthorized: Boolean, attestation: String?) {
-            sendEvent(CAF_SMART_AUTH_PENDING_EVENT, mapOf(
-                CAF_MAP_KEY_IS_AUTHORIZED to isAuthorized,
-                CAF_MAP_KEY_ATTESTATION to (attestation ?: "")
-            ))
+            sendEvent(
+                CAF_SMART_AUTH_PENDING_EVENT, mapOf(
+                    CAF_MAP_KEY_IS_AUTHORIZED to isAuthorized,
+                    CAF_MAP_KEY_ATTESTATION to (attestation ?: "")
+                )
+            )
         }
 
-        override fun onError(failure: CafFailure) {
-            sendEvent(CAF_SMART_AUTH_ERROR_EVENT, mapOf(
-                CAF_MAP_KEY_ERROR_MESSAGE to failure.message
-            ))
+        override fun onError(failure: CafFailure, message: String?) {
+            sendEvent(
+                CAF_SMART_AUTH_ERROR_EVENT, mapOf(
+                    CAF_MAP_KEY_ERROR_MESSAGE to failure.message
+                )
+            )
+
+            Log.d("CafSmartAuthBridgeModule", "Failure: ${failure.message}")
+            Log.d("CafSmartAuthBridgeModule", "Message: $message")
         }
 
         override fun onCancel() {
@@ -145,7 +163,8 @@ class CafSmartAuthBridgeModule : Module() {
 
         private const val CAF_SMART_AUTH_MODULE_NAME = "CafSmartAuthBridgeModule"
         private const val CAF_SMART_AUTH_FUNCTION_START_SMART_AUTH = "startSmartAuth"
-        private const val CAF_SMART_AUTH_FUNCTION_REQUEST_LOCATION_PERMISSIONS = "requestLocationPermissions"
+        private const val CAF_SMART_AUTH_FUNCTION_REQUEST_LOCATION_PERMISSIONS =
+            "requestLocationPermissions"
 
         private const val CAF_SMART_AUTH_SUCCESS_EVENT = "CafSmartAuth_Success"
         private const val CAF_SMART_AUTH_PENDING_EVENT = "CafSmartAuth_Pending"

@@ -34,7 +34,26 @@ export interface CafFaceAuthenticationSettings {
   filter?: CafFilter;
 }
 
+export interface CafSmartAuthTheme {
+  backgroundColor?: string;
+  textColor?: string;
+  progressColor?: string;
+  linkColor?: string;
+  boxBackgroundColor?: string;
+  boxFilledBackgroundColor?: string;
+  boxBorderColor?: string;
+  boxFilledBorderColor?: string;
+  boxTextColor?: string;
+}
+
+export interface CafSmartAuthThemeConfigurator {
+  lightTheme?: CafSmartAuthTheme;
+  darkTheme?: CafSmartAuthTheme;
+}
 export interface CafSmartAuthSettings {
   faceAuthenticationSettings?: CafFaceAuthenticationSettings;
   stage?: CafStage;
+  emailUrl?: string;
+  phoneUrl?: string;
+  theme?: CafSmartAuthThemeConfigurator;
 }
