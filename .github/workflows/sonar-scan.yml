@@ -1,6 +1,14 @@
 name: Sonar
 
 on:
+  workflow_dispatch:
+    inputs:
+      branch:
+        description: 'Branch to execute scan'
+        required: false
+        default: 'main'
+        type: string 
+        
   pull_request:
     branches:
       - main
