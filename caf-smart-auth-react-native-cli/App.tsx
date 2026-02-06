@@ -41,7 +41,14 @@ const App: React.FC<React.FC> = () => {
       <View style={styles.container}>
         <Button
           title="Start CafSmartAuth"
-          onPress={() => startSmartAuth('', '', '', '')}
+          onPress={() =>
+            startSmartAuth(
+              '',
+              '',
+              '',
+              '',
+            )
+          }
         />
 
         <View>

@@ -8,7 +8,7 @@ require Pod::Executable.execute_command('node', ['-p',
     {paths: [process.argv[1]]},
   )', __dir__]).strip
 
-platform :ios, 13.4
+platform :ios, '15.0'
 prepare_react_native_project!
 
 # If you are using a `react-native-flipper` your iOS build will fail when `NO_FLIPPER=1` is set.
@@ -31,7 +31,7 @@ end
 target 'CafSmartAuthBridge' do
   config = use_native_modules!
 
-  pod 'CafSmartAuth', '~> 1.2.0'
+  pod 'CafSmartAuth', '~> 1.3.0-rc'
 
   use_react_native!(
     :path => config[:reactNativePath],

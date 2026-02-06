@@ -110,7 +110,7 @@ android {
     }
 }
 
-def cafSmartAuthVersion = "1.2.2"
+def cafSmartAuthVersion = "1.6.0-rc.1"
 
 dependencies {
     // The version of react-native is set by the React Native Gradle Plugin

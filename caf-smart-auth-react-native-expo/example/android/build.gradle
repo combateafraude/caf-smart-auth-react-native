@@ -38,7 +38,7 @@ allprojects {
         mavenCentral()
         maven { url 'https://www.jitpack.io' }
         maven { url = uri("https://repo.combateafraude.com/android/release") }
-        maven { url = uri("https://raw.githubusercontent.com/iProov/android/patch912/maven/") }
+        maven { url = uri("https://raw.githubusercontent.com/iProov/android/master/maven/") }
         maven { setUrl("https://maven.fpregistry.io/releases") }
         maven { setUrl("https://jitpack.io") }
     }

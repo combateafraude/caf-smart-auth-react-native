@@ -3,7 +3,7 @@ apply plugin: 'com.android.library'
 group = 'io.caf.smartauthbridge'
 version = '0.1.0'
 
-def cafSmartAuthVersion = "1.2.2"
+def cafSmartAuthVersion = "1.6.0-rc.1"
 
 def expoModulesCorePlugin = new File(project(":expo-modules-core").projectDir.absolutePath, "ExpoModulesCorePlugin.gradle")
 apply from: expoModulesCorePlugin
